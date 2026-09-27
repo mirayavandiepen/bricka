@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content"
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>Inlay — a composable input for AI apps</title>
+    <meta
+      name="description"
+      content="A React composer for AI apps: inline context tokens, @ mentions, / commands, streaming ghost-text autocomplete and attachments. Keyboard-first and accessible."
+    />
+    <meta name="author" content="Miraya van Diepen" />
+    <meta
+      property="og:title"
+      content="Inlay — a composable input for AI apps"
+    />
+    <meta
+      property="og:description"
+      content="Inline context, mentions, commands, streaming autocomplete and attachments for React."
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      name="theme-color"
+      content="#fbfbfc"
+      media="(prefers-color-scheme: light)"
+    />
+    <meta
+      name="theme-color"
+      content="#111113"
+      media="(prefers-color-scheme: dark)"
+    />
+    <script>
+      try {
+        var theme = localStorage.getItem('inlay-docs-theme')
+        if (theme === 'light' || theme === 'dark')
+          document.documentElement.dataset.theme = theme
+      } catch (error) {}
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
