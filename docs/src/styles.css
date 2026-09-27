@@ -229,10 +229,6 @@ a {
   letter-spacing: -0.05em;
 }
 
-.logo {
-  flex: none;
-}
-
 .topbar-links {
   display: flex;
   align-items: center;

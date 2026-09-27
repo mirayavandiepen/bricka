@@ -4,39 +4,6 @@ import { LINKS } from './links'
 import { NAV, NAV_GROUPS } from './nav'
 import { Sections } from './sections'
 
-function Logo() {
-  return (
-    <svg
-      width="28"
-      height="28"
-      viewBox="0 0 32 32"
-      aria-hidden
-      className="logo"
-    >
-      <rect width="32" height="32" rx="16" fill="#171717" />
-      <rect
-        x="6.5"
-        y="14"
-        width="4"
-        height="4"
-        rx="2"
-        fill="#fff"
-        opacity="0.5"
-      />
-      <rect x="12" y="11.5" width="10" height="9" rx="4.5" fill="#2f7df6" />
-      <rect
-        x="23.5"
-        y="14"
-        width="2.5"
-        height="4"
-        rx="1.25"
-        fill="#fff"
-        opacity="0.5"
-      />
-    </svg>
-  )
-}
-
 function useActiveSection(ids: Array<string>): string {
   const [active, setActive] = useState(ids[0])
   useEffect(() => {
@@ -121,7 +88,6 @@ export function App() {
       <header className="topbar">
         <div className="topbar-inner">
           <a className="brand" href="#introduction">
-            <Logo />
             <span className="wordmark">bricka</span>
           </a>
           <nav className="topbar-links" aria-label="Project">
@@ -131,7 +97,6 @@ export function App() {
                 <Navigation active={active} />
               </nav>
             </details>
-            <a href="#examples">Examples</a>
             <a href={LINKS.npm}>npm</a>
             {LINKS.repository && <a href={LINKS.repository}>GitHub</a>}
             <a className="cta" href="#get-started">
