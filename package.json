@@ -1,0 +1,29 @@
+{
+  "name": "inlay-workspace",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "examples",
+    "docs"
+  ],
+  "scripts": {
+    "dev": "bun run --filter inlay-docs dev",
+    "dev:examples": "bun run --filter inlay-examples dev",
+    "build": "bun run --filter @inlay/react build",
+    "build:docs": "bun run --filter inlay-docs build",
+    "test": "bun run --filter @inlay/react test",
+    "typecheck": "tsc -p packages/react --noEmit && tsc -p examples --noEmit && tsc -p docs --noEmit",
+    "lint": "eslint .",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.0.0",
+    "eslint": "^9.0.0",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "globals": "^16.0.0",
+    "prettier": "^3.4.0",
+    "typescript": "^5.5.0",
+    "typescript-eslint": "^8.0.0"
+  }
+}
