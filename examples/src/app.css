@@ -1,0 +1,51 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--inlay-bg);
+  color: var(--inlay-fg);
+  font-family:
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    sans-serif;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 48px 16px 96px;
+}
+
+.page-header h1 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.page-header p,
+.page-section p {
+  margin: 4px 0 0;
+  color: var(--inlay-muted);
+}
+
+.page-section {
+  margin-top: 40px;
+}
+
+.page-section h2 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.page-section .example {
+  margin-top: 12px;
+}
