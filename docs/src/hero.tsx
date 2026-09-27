@@ -198,7 +198,7 @@ const HINTS: Array<{ id: string; content: ReactNode }> = [
     id: 'mention',
     content: (
       <>
-        <kbd>@</kbd> add context
+        <kbd data-tone="blue">@</kbd> add context
       </>
     ),
   },
@@ -206,7 +206,7 @@ const HINTS: Array<{ id: string; content: ReactNode }> = [
     id: 'command',
     content: (
       <>
-        <kbd>/</kbd> commands
+        <kbd data-tone="neutral">/</kbd> commands
       </>
     ),
   },
@@ -214,7 +214,10 @@ const HINTS: Array<{ id: string; content: ReactNode }> = [
     id: 'suggest',
     content: (
       <>
-        type <q>why does</q>, then <kbd>Tab</kbd>
+        <span>
+          type <q>why does</q>, then
+        </span>
+        <kbd data-tone="violet">Tab</kbd>
       </>
     ),
   },
@@ -222,7 +225,7 @@ const HINTS: Array<{ id: string; content: ReactNode }> = [
     id: 'remove',
     content: (
       <>
-        <kbd aria-label="Backspace">
+        <kbd data-tone="red" aria-label="Backspace">
           <Delete size={12} strokeWidth={2.25} aria-hidden />
         </kbd>
         twice removes a token
