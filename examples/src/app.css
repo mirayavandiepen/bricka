@@ -1,3 +1,18 @@
+:root {
+  --page-bg: #f5f5f6;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --page-bg: #0e0e10;
+  }
+}
+
+:root[data-theme='dark'] {
+  --page-bg: #0e0e10;
+}
+
 *,
 *::before,
 *::after {
@@ -6,7 +21,7 @@
 
 body {
   margin: 0;
-  background: var(--bricka-bg);
+  background: var(--page-bg);
   color: var(--bricka-fg);
   font-family:
     system-ui,
@@ -14,38 +29,131 @@ body {
     'Segoe UI',
     sans-serif;
   font-size: 14px;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:where(button, a, select):focus-visible {
+  outline: 2px solid var(--bricka-accent);
+  outline-offset: 2px;
 }
 
 .page {
   max-width: 680px;
   margin: 0 auto;
-  padding: 48px 16px 96px;
+  padding: 56px 16px 120px;
+}
+
+.page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
 }
 
 .page-header h1 {
   margin: 0;
-  font-size: 20px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
 }
 
-.page-header p,
-.page-section p {
+.page-header p {
   margin: 4px 0 0;
   color: var(--bricka-muted);
 }
 
+.theme-switch {
+  display: flex;
+  flex: none;
+  gap: 2px;
+  padding: 3px;
+  border-radius: 10px;
+  background: var(--bricka-hover);
+}
+
+.theme-switch button {
+  height: 28px;
+  padding: 0 10px;
+  border: 0;
+  /* Concentric with the 10px track and its 3px padding. */
+  border-radius: 7px;
+  background: none;
+  color: var(--bricka-muted);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background-color 120ms ease,
+    color 120ms ease;
+}
+
+.theme-switch button:hover {
+  color: var(--bricka-fg);
+}
+
+.theme-switch button[aria-checked='true'] {
+  background: var(--bricka-bg);
+  color: var(--bricka-fg);
+  box-shadow: var(--bricka-shadow);
+}
+
 .page-section {
-  margin-top: 40px;
+  margin-top: 48px;
 }
 
 .page-section h2 {
   margin: 0;
   font-size: 15px;
   font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.hints {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  margin: 8px 0 0;
+  padding: 0;
+  color: var(--bricka-muted);
+  font-size: 13px;
+  list-style: none;
+}
+
+.hints li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+kbd {
+  display: inline-block;
+  min-width: 20px;
+  padding: 0 5px;
+  border-radius: 6px;
+  background: var(--bricka-bg);
+  color: var(--bricka-fg);
+  box-shadow:
+    0 0 0 1px var(--bricka-border-strong),
+    0 1px 0 var(--bricka-border);
+  font-family: var(--bricka-font-mono);
+  font-size: 11px;
+  line-height: 20px;
+  text-align: center;
 }
 
 .page-section .example {
-  margin-top: 12px;
+  margin-top: 14px;
+}
+
+@media (max-width: 520px) {
+  .page {
+    padding-top: 32px;
+  }
+
+  .page-header {
+    flex-direction: column;
+  }
 }
