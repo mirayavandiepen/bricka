@@ -7,12 +7,13 @@ import {
   ComposerInput,
   ComposerSubmit,
   fuzzyFilter,
+  type ComposerApi,
   type ComposerMessage,
   type ComposerValue,
   type ContextItem,
   type Trigger,
 } from '@inlay/react'
-import { useState } from 'react'
+import { useState, type Ref } from 'react'
 import {
   BranchIcon,
   ChatIcon,
@@ -190,17 +191,20 @@ export function CodingAssistant({
   onValueChange,
   defaultValue,
   autoFocus,
+  composerRef,
 }: {
   onSend?: (message: ComposerMessage) => void
   onValueChange?: (value: ComposerValue) => void
   defaultValue?: ComposerValue
   autoFocus?: boolean
+  composerRef?: Ref<ComposerApi>
 }) {
   const [model, setModel] = useState(MODELS[0])
   const [isSearchEnabled, setIsSearchEnabled] = useState(false)
 
   return (
     <Composer
+      ref={composerRef}
       acceptFiles
       defaultValue={defaultValue}
       onSubmit={onSend}
