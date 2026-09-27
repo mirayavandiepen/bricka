@@ -23,14 +23,15 @@
 
 .example-select select {
   appearance: none;
-  height: 28px;
-  padding: 0 22px 0 8px;
+  height: 32px;
+  padding: 0 24px 0 10px;
   border: 0;
-  border-radius: 7px;
+  border-radius: 999px;
   background: none;
   color: inherit;
   font: inherit;
   font-size: 13px;
+  font-weight: 500;
   cursor: pointer;
 }
 
@@ -46,7 +47,7 @@
 
 .example-select svg {
   position: absolute;
-  right: 8px;
+  right: 10px;
   pointer-events: none;
 }
 
@@ -73,40 +74,56 @@
 
 .example-preview {
   overflow: hidden;
-  border: 1px solid var(--inlay-border);
   border-radius: var(--inlay-radius);
+  background: var(--inlay-bg);
+  box-shadow: var(--inlay-shadow);
   font-size: 13px;
 }
 
 .example-preview-tabs {
   display: flex;
   gap: 2px;
-  padding: 4px;
-  border-bottom: 1px solid var(--inlay-border);
+  width: fit-content;
+  margin: 8px 8px 0;
+  padding: 3px;
+  /* 8px from the preview's corner, then 3px to the buttons. */
+  border-radius: calc(var(--inlay-radius) - 8px);
+  background: var(--inlay-hover);
 }
 
 .example-preview-tabs button {
-  height: 24px;
-  padding: 0 8px;
+  height: 26px;
+  padding: 0 12px;
   border: 0;
-  border-radius: 5px;
+  border-radius: calc(var(--inlay-radius) - 11px);
   background: none;
   color: var(--inlay-muted);
   font: inherit;
   font-size: 12px;
+  font-weight: 500;
   cursor: pointer;
+  transition:
+    background-color 120ms ease,
+    color 120ms ease;
+}
+
+.example-preview-tabs button:hover {
+  color: var(--inlay-fg);
 }
 
 .example-preview-tabs button[aria-selected='true'] {
-  background: var(--inlay-selected);
+  background: var(--inlay-bg);
   color: var(--inlay-fg);
+  box-shadow:
+    0 0 0 1px rgb(23 23 23 / 0.05),
+    0 1px 3px rgb(23 23 23 / 0.1);
 }
 
 .example-preview-body {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  padding: 12px;
+  padding: 14px 16px 16px;
 }
 
 .example-preview-text {
@@ -132,7 +149,7 @@
 .example-preview-json {
   max-height: 240px;
   margin: 0;
-  padding: 12px;
+  padding: 14px 16px 16px;
   overflow: auto;
   color: var(--inlay-muted);
   font-family: var(--inlay-font-mono);
@@ -141,11 +158,11 @@
 }
 
 .example-chip {
-  padding: 1px 5px;
-  border-radius: 4px;
+  padding: 2px 8px;
+  border-radius: 999px;
   background: var(--inlay-token-bg);
   color: var(--inlay-token-fg);
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .example-chip[data-trigger='/'] {
@@ -153,4 +170,58 @@
   color: var(--inlay-fg);
   font-family: var(--inlay-font-mono);
   font-size: 0.9em;
+}
+
+/* Each kind of context gets its own colour, like crayons in a box. */
+
+:is(.inlay-token, .inlay-option)[data-type] {
+  --tint: 47 125 246;
+}
+
+:is(.inlay-token, .inlay-option):is([data-type='person'], [data-type='agent']) {
+  --tint: 226 61 128;
+}
+
+:is(.inlay-token, .inlay-option):is([data-type='tool'], [data-type='branch']) {
+  --tint: 22 150 88;
+}
+
+:is(.inlay-token, .inlay-option):is([data-type='issue'], [data-type='url']) {
+  --tint: 230 96 14;
+}
+
+:is(.inlay-token, .inlay-option):is(
+  [data-type='document'],
+  [data-type='article']
+) {
+  --tint: 124 77 232;
+}
+
+:is(.inlay-token, .inlay-option):is(
+  [data-type='dataset'],
+  [data-type='source']
+) {
+  --tint: 13 140 128;
+}
+
+:is(.inlay-token, .inlay-option)[data-type='folder'] {
+  --tint: 190 128 0;
+}
+
+.inlay-token[data-type] {
+  background: rgb(var(--tint) / 0.13);
+  color: rgb(var(--tint));
+}
+
+.inlay-token[data-type]:hover {
+  background: rgb(var(--tint) / 0.19);
+}
+
+.inlay-token[data-type][data-selected] {
+  background: rgb(var(--tint) / 0.24);
+  box-shadow: 0 0 0 1.5px rgb(var(--tint) / 0.6);
+}
+
+.inlay-option[data-type] .inlay-option-icon {
+  color: rgb(var(--tint));
 }
