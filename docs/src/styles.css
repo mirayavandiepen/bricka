@@ -59,17 +59,12 @@
   /* Radii step down as surfaces nest. Where a child sits close to its
      parent's edge, inner = outer − padding. */
   --card-radius: 28px;
-  --stage-radius: 24px;
   --block-radius: 14px;
   --card-shadow:
     0 0 0 1px rgb(23 23 23 / 0.04), 0 1px 2px rgb(23 23 23 / 0.03),
     0 18px 40px -24px rgb(23 23 23 / 0.14);
 
-  /* Colour is saved for the hero; the docs below stay neutral. */
   --blue: #2f7df6;
-  --green: #22b566;
-  --orange: #fb6a1c;
-  --yellow: #fbc81c;
 
   --bricka-font: 'Sunghyun Sans', system-ui, sans-serif;
   --bricka-font-mono: 'Geist Mono Variable', ui-monospace, monospace;
@@ -396,21 +391,19 @@ a {
   padding-bottom: 40px;
 }
 
-/* --- Hero: the one place that gets to be loud --- */
+/* --- Hero: straight on the page, like the examples --- */
 
 .hero {
-  padding: 56px 48px 44px;
-  border-radius: var(--card-radius);
-  background: var(--card-bg);
-  box-shadow: var(--card-shadow);
+  padding: 56px 0 28px;
 }
 
 .hero-tag {
   display: inline-block;
-  margin: 0 0 20px;
+  margin: 0 0 18px;
   padding: 2px 10px;
   border-radius: 999px;
-  background: #f4f4f5;
+  background: var(--card-bg);
+  box-shadow: 0 0 0 1px var(--hairline);
   color: var(--text);
   font-family: var(--bricka-font-mono);
   font-size: 12px;
@@ -419,12 +412,12 @@ a {
 .hero h1 {
   display: flex;
   flex-wrap: wrap;
-  column-gap: 0.2em;
+  column-gap: 0.22em;
   margin: 0;
-  font-size: 64px;
-  font-weight: 900;
-  line-height: 0.98;
-  letter-spacing: -0.05em;
+  font-size: 52px;
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.045em;
 }
 
 .hero-phrase {
@@ -432,11 +425,11 @@ a {
 }
 
 .hero-lede {
-  max-width: 520px;
-  margin: 18px 0 0;
+  max-width: 500px;
+  margin: 14px 0 0;
   padding-inline-start: var(--text-inset);
   color: var(--text);
-  font-size: 18px;
+  font-size: 17px;
   line-height: 1.5;
   text-wrap: pretty;
 }
@@ -444,114 +437,55 @@ a {
 .hero-demo {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
   margin-top: 36px;
 }
 
+/* Holds the composer and the demo caret; no surface of its own. */
 .stage {
   position: relative;
-  padding: 76px 40px 80px;
-  border-radius: var(--stage-radius);
-  background-color: #f7f7f8;
-  background-image: radial-gradient(
-    rgb(23 23 23 / 0.08) 1px,
-    transparent 1.2px
-  );
-  background-size: 16px 16px;
-}
-
-.stage .example {
-  position: relative;
-  z-index: 1;
 }
 
 .hero-hints {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
   margin: 0;
-  padding: 0;
+  padding: 0 0 0 2px;
+  color: var(--text);
+  font-size: 13.5px;
   list-style: none;
 }
 
-.pill {
-  position: absolute;
-  z-index: 2;
+/* Each hint shows up in turn before the demo starts typing. */
+.hint {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  height: 36px;
-  padding: 0 16px;
-  border-radius: 999px;
-  background: var(--pill, var(--blue));
-  color: #fff;
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  white-space: nowrap;
-  /* Hidden until its feature shows up in the demo, then it pops. */
   opacity: 0;
-  scale: 0.6;
-  translate: 0 8px;
-  rotate: 0deg;
-  box-shadow: 0 8px 18px -10px rgb(23 23 23 / 0.45);
+  translate: 0 4px;
   transition:
-    opacity 160ms ease-out,
-    scale 625ms var(--spring-pop),
-    translate 625ms var(--spring-pop),
-    rotate 625ms var(--spring-pop);
+    opacity 200ms ease-out,
+    translate 500ms var(--spring-soft);
 }
 
-.pill[data-shown] {
+.hint[data-shown] {
   opacity: 1;
-  scale: 1;
   translate: 0 0;
-  rotate: var(--tilt, 0deg);
 }
 
-.pill[data-shown]:hover {
-  rotate: 0deg;
-}
-
-.pill q {
+.hint q {
   quotes: '“' '”';
+  color: var(--ink);
 }
 
-.pill {
-  gap: 8px;
-  padding: 0 16px 0 7px;
-}
-
-/* The key inside a hint: a solid white chip in the hint's own colour, so
-   the symbol reads at a glance. */
-.pill-key {
+.hint kbd {
   display: inline-flex;
-  flex: none;
   align-items: center;
   justify-content: center;
-  min-width: 24px;
-  height: 24px;
-  padding: 0 4px;
-  border-radius: 999px;
-  background: #fff;
-  color: var(--pill);
-  font-size: 12px;
-  font-weight: 800;
-  box-shadow: 0 1px 2px rgb(23 23 23 / 0.12);
+  height: 20px;
 }
 
-.pill-yellow .pill-key {
-  color: #3a2c00;
-}
-
-.pill-key-wide {
-  padding: 0 9px;
-  margin-inline-start: 2px;
-}
-
-.pill-orange {
-  padding-left: 16px;
-  padding-right: 7px;
-}
-
-/* A stand-in caret for the typing demo. */
 .demo-caret {
   position: absolute;
   z-index: 2;
@@ -559,7 +493,7 @@ a {
   height: 20px;
   margin-left: 1px;
   border-radius: 1px;
-  background: var(--ink);
+  background: var(--blue);
   pointer-events: none;
   animation: blink 1s steps(1) infinite;
 }
@@ -570,42 +504,13 @@ a {
   }
 }
 
-.pill-blue {
-  --pill: var(--blue);
-  --tilt: -5deg;
-  top: 20px;
-  left: 28px;
-}
-
-.pill-green {
-  --pill: var(--green);
-  --tilt: 4deg;
-  top: 16px;
-  right: 40px;
-}
-
-.pill-orange {
-  --pill: var(--orange);
-  --tilt: 3deg;
-  bottom: 22px;
-  left: 56px;
-}
-
-.pill-yellow {
-  --pill: var(--yellow);
-  --tilt: -4deg;
-  right: 32px;
-  bottom: 18px;
-  color: #3a2c00;
-}
-
 .readout {
   display: grid;
   gap: 8px;
   margin: 0;
-  padding: 16px 20px;
-  border-radius: var(--stage-radius);
-  background: var(--code-bg);
+  padding: 14px 18px;
+  border-radius: var(--block-radius);
+  box-shadow: inset 0 0 0 1px var(--hairline);
   font-size: 13px;
 }
 
@@ -617,7 +522,7 @@ a {
 }
 
 .readout dt {
-  color: var(--bricka-faint);
+  color: var(--faint);
   font-family: var(--bricka-font-mono);
   font-size: 11.5px;
 }
@@ -650,7 +555,7 @@ a {
   font-family: var(--bricka-font-mono);
   font-size: 12px;
   line-height: 24px;
-  box-shadow: 0 0 0 1px rgb(23 23 23 / 0.06);
+  box-shadow: 0 0 0 1px var(--hairline);
 }
 
 .readout-token span {
@@ -662,7 +567,7 @@ a {
 }
 
 .readout-empty {
-  color: var(--bricka-faint);
+  color: var(--faint);
 }
 
 /* --- Docs: one calm reading surface --- */
@@ -1175,10 +1080,6 @@ kbd {
     animation: rise 600ms var(--ease-out-expo) 420ms backwards;
   }
 
-  .stage {
-    animation: settle 800ms var(--ease-out-expo) 500ms backwards;
-  }
-
   .readout {
     animation: rise 600ms var(--ease-out-expo) 640ms backwards;
   }
@@ -1198,12 +1099,6 @@ kbd {
 
 @media (prefers-reduced-motion: reduce) {
   /* Gentler, not gone: keep the fades, drop the movement. */
-  .pill {
-    scale: 1;
-    translate: 0 0;
-    rotate: var(--tilt, 0deg);
-    transition: opacity 200ms ease-out;
-  }
 
   .hero {
     animation: fade 400ms ease-out backwards;
@@ -1223,14 +1118,6 @@ kbd {
     translate: 0 0.35em;
     scale: 0.96;
     filter: blur(6px);
-  }
-}
-
-@keyframes settle {
-  from {
-    opacity: 0;
-    translate: 0 16px;
-    scale: 0.97;
   }
 }
 
@@ -1275,7 +1162,7 @@ kbd {
   }
 
   .hero {
-    padding: 32px 20px;
+    padding: 32px 4px 20px;
   }
 
   .docs {
@@ -1287,34 +1174,11 @@ kbd {
   }
 
   .hero h1 {
-    font-size: 44px;
+    font-size: 40px;
   }
 
   .hero-lede {
     font-size: 16px;
-  }
-
-  /* Too little room for a third nested surface: the composer sits
-     straight on the card instead. */
-  .stage {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    padding: 0;
-    background: none;
-  }
-
-  .hero-hints {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .pill {
-    position: static;
-    height: 32px;
-    padding: 0 12px;
-    font-size: 13px;
   }
 
   .readout > div {

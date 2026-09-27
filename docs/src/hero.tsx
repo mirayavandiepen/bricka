@@ -10,7 +10,7 @@ import {
   type ComposerValue,
   type TokenSegment,
 } from '@bricka/react'
-import { AtSign, Delete, Slash } from 'lucide-react'
+import { Delete } from 'lucide-react'
 import {
   useEffect,
   useRef,
@@ -193,45 +193,38 @@ function useTypingDemo(
   return { hints, caret }
 }
 
-const HINTS: Array<{ tone: string; content: ReactNode }> = [
+const HINTS: Array<{ id: string; content: ReactNode }> = [
   {
-    tone: 'blue',
+    id: 'mention',
     content: (
       <>
-        <span className="pill-key">
-          <AtSign size={13} strokeWidth={2.75} />
-        </span>
-        add context
+        <kbd>@</kbd> add context
       </>
     ),
   },
   {
-    tone: 'green',
+    id: 'command',
     content: (
       <>
-        <span className="pill-key">
-          <Slash size={13} strokeWidth={2.75} />
-        </span>
-        commands
+        <kbd>/</kbd> commands
       </>
     ),
   },
   {
-    tone: 'orange',
+    id: 'suggest',
     content: (
       <>
-        type <q>why does</q>, then
-        <span className="pill-key pill-key-wide">Tab</span>
+        type <q>why does</q>, then <kbd>Tab</kbd>
       </>
     ),
   },
   {
-    tone: 'yellow',
+    id: 'remove',
     content: (
       <>
-        <span className="pill-key">
-          <Delete size={14} strokeWidth={2.5} />
-        </span>
+        <kbd aria-label="Backspace">
+          <Delete size={12} strokeWidth={2.25} aria-hidden />
+        </kbd>
         twice removes a token
       </>
     ),
@@ -280,8 +273,8 @@ export function Hero() {
           <ul className="hero-hints" aria-label="Try it">
             {HINTS.map((hint, index) => (
               <li
-                key={hint.tone}
-                className={`pill pill-${hint.tone}`}
+                key={hint.id}
+                className="hint"
                 data-shown={index < hints || undefined}
               >
                 {hint.content}
