@@ -569,7 +569,10 @@ const THEME_TOKENS: Array<[string, string]> = [
   ['--bricka-accent', 'Focus rings, active tools and progress'],
   ['--bricka-token-bg / --bricka-token-fg', 'Inline tokens'],
   ['--bricka-token-selected', 'A token selected with Backspace or a click'],
-  ['--bricka-popover-bg / --bricka-popover-shadow', 'Menu and tooltip surfaces'],
+  [
+    '--bricka-popover-bg / --bricka-popover-shadow',
+    'Menu and tooltip surfaces',
+  ],
   ['--bricka-radius / --bricka-radius-sm', 'Composer and menu corners'],
   ['--bricka-font / --bricka-font-mono / --bricka-font-size', 'Typography'],
   ['--bricka-max-height', 'Height before the input scrolls'],
@@ -779,8 +782,8 @@ function KeyboardDocs() {
     >
       <KeyGrid items={SHORTCUTS} />
       <Note>
-        Bricka claims no shortcuts of its own. Bold and other formatting keys are
-        blocked, since the content is plain text with tokens.
+        Bricka claims no shortcuts of its own. Bold and other formatting keys
+        are blocked, since the content is plain text with tokens.
       </Note>
     </Section>
   )
