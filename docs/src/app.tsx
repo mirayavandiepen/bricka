@@ -1,42 +1,37 @@
 import { useEffect, useState } from 'react'
 import { Hero } from './hero'
 import { LINKS } from './links'
-import { NAV, Sections } from './sections'
-import { ThemeToggle } from './theme'
+import { NAV, NAV_GROUPS } from './nav'
+import { Sections } from './sections'
 
 function Logo() {
   return (
     <svg
-      width="20"
-      height="20"
+      width="28"
+      height="28"
       viewBox="0 0 32 32"
       aria-hidden
       className="logo"
     >
-      <rect width="32" height="32" rx="7" fill="currentColor" />
+      <rect width="32" height="32" rx="16" fill="#171717" />
       <rect
-        x="7"
-        y="14.5"
+        x="6.5"
+        y="14"
         width="4"
-        height="3"
-        rx="1.5"
-        className="logo-text"
-      />
-      <rect
-        x="13"
-        y="12.5"
-        width="8"
-        height="7"
+        height="4"
         rx="2"
-        className="logo-token"
+        fill="#fff"
+        opacity="0.5"
       />
+      <rect x="12" y="11.5" width="10" height="9" rx="4.5" fill="#2f7df6" />
       <rect
-        x="23"
-        y="14.5"
+        x="23.5"
+        y="14"
         width="2.5"
-        height="3"
+        height="4"
         rx="1.25"
-        className="logo-text"
+        fill="#fff"
+        opacity="0.5"
       />
     </svg>
   )
@@ -67,23 +62,56 @@ const NAV_IDS = NAV.map((item) => item.id)
 
 function Navigation({ active }: { active: string }) {
   return (
-    <ul>
-      {NAV.map((item) => (
-        <li key={item.id}>
-          <a
-            href={`#${item.id}`}
-            aria-current={item.id === active ? 'location' : undefined}
-          >
-            {item.label}
-          </a>
-        </li>
+    <>
+      {NAV_GROUPS.map((group) => (
+        <div key={group.label} className="nav-group">
+          <p className="nav-group-label">{group.label}</p>
+          <ul>
+            {group.items.map((item) => (
+              <li key={item.id}>
+                <a
+                  href={`#${item.id}`}
+                  aria-current={item.id === active ? 'location' : undefined}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
       ))}
-    </ul>
+    </>
   )
+}
+
+/** Sections fade up once as they scroll into view. */
+function useReveal() {
+  useEffect(() => {
+    const root = document.documentElement
+    root.dataset.reveal = ''
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue
+          entry.target.setAttribute('data-shown', '')
+          observer.unobserve(entry.target)
+        }
+      },
+      { rootMargin: '0px 0px -8% 0px' }
+    )
+    for (const element of document.querySelectorAll('.section')) {
+      observer.observe(element)
+    }
+    return () => {
+      observer.disconnect()
+      delete root.dataset.reveal
+    }
+  }, [])
 }
 
 export function App() {
   const active = useActiveSection(NAV_IDS)
+  useReveal()
 
   return (
     <>
@@ -94,8 +122,7 @@ export function App() {
         <div className="topbar-inner">
           <a className="brand" href="#introduction">
             <Logo />
-            <span>Inlay</span>
-            <span className="version">v0.1</span>
+            <span className="wordmark">inlay</span>
           </a>
           <nav className="topbar-links" aria-label="Project">
             <details className="mobile-nav">
@@ -107,7 +134,9 @@ export function App() {
             <a href="#examples">Examples</a>
             <a href={LINKS.npm}>npm</a>
             {LINKS.repository && <a href={LINKS.repository}>GitHub</a>}
-            <ThemeToggle />
+            <a className="cta" href="#get-started">
+              Install
+            </a>
           </nav>
         </div>
       </header>
@@ -117,7 +146,9 @@ export function App() {
         </nav>
         <main id="content" className="content">
           <Hero />
-          <Sections />
+          <div className="docs">
+            <Sections />
+          </div>
           <footer className="footer">
             <span>MIT License</span>
             <span>Built by Miraya van Diepen</span>
