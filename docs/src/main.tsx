@@ -1,4 +1,3 @@
-import '@fontsource-variable/inter'
 import '@fontsource-variable/geist-mono'
 import '@inlay/react/styles.css'
 import { StrictMode } from 'react'
