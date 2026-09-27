@@ -1,4 +1,5 @@
 import { Section } from './section'
+import { Topics } from './ui'
 
 type Row = [name: string, type: string, description: string]
 
@@ -248,37 +249,36 @@ const TABLES: Array<{
 
 export function ApiReference() {
   return (
-    <Section id="api" title="API reference">
-      {TABLES.map((table) => (
-        <div key={table.id} className="api-table">
-          <h3 id={table.id}>{table.title}</h3>
-          {table.note && <p className="api-note">{table.note}</p>}
-          <div className="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Type</th>
-                  <th>Description</th>
-                </tr>
-              </thead>
-              <tbody>
+    <Section
+      id="api"
+      title="API reference"
+      lede="Every prop and method, one part at a time."
+    >
+      <Topics
+        variant="list"
+        label="API parts"
+        items={TABLES.map((table) => ({
+          id: table.id,
+          label: table.title,
+          content: (
+            <>
+              <h3 className="api-title">{table.title}</h3>
+              {table.note && <p className="api-note">{table.note}</p>}
+              <dl className="prop-list">
                 {table.rows.map(([name, type, description]) => (
-                  <tr key={name}>
-                    <td>
+                  <div key={name}>
+                    <dt>
                       <code>{name}</code>
-                    </td>
-                    <td>
                       <code className="type">{type}</code>
-                    </td>
-                    <td>{description}</td>
-                  </tr>
+                    </dt>
+                    {description && <dd>{description}</dd>}
+                  </div>
                 ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      ))}
+              </dl>
+            </>
+          ),
+        }))}
+      />
     </Section>
   )
 }
