@@ -9,7 +9,7 @@ import {
   type ComposerMessage,
   type ComposerValue,
   type TokenSegment,
-} from '@inlay/react'
+} from '@bricka/react'
 import { AtSign, Delete, Slash } from 'lucide-react'
 import {
   useEffect,
@@ -107,7 +107,7 @@ type Point = { x: number; y: number }
 
 /** Where the caret would be: the end of the input's text, relative to `stage`. */
 function caretPoint(stage: HTMLElement): Point | null {
-  const input = stage.querySelector('.inlay-input')
+  const input = stage.querySelector('.bricka-input')
   if (!input) return null
   const walker = document.createTreeWalker(input, NodeFilter.SHOW_TEXT)
   let last: Text | null = null
@@ -247,7 +247,7 @@ export function Hero() {
 
   return (
     <section className="hero" id="introduction" aria-labelledby="hero-title">
-      <p className="hero-tag">@inlay/react · v0.1</p>
+      <p className="hero-tag">@bricka/react · v0.1</p>
       <h1 id="hero-title">
         {['Type it.', 'Tag it.', 'Send it.'].map((phrase, index) => (
           <span

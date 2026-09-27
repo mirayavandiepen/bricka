@@ -11,11 +11,11 @@ export default defineConfig({
     // Build the docs against the library source so they never drift.
     alias: [
       {
-        find: /^@inlay\/react$/,
+        find: /^@bricka\/react$/,
         replacement: path('../packages/react/src/index.ts'),
       },
       {
-        find: /^@inlay\/react\/styles\.css$/,
+        find: /^@bricka\/react\/styles\.css$/,
         replacement: path('../packages/react/src/styles.css'),
       },
       { find: /^@examples\//, replacement: path('../examples/src/') },

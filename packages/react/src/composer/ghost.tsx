@@ -24,12 +24,12 @@ export function GhostText({ ghost, onAccept }: GhostTextProps) {
   }
 
   return (
-    <div className="inlay-ghost" data-status={status} style={style} aria-hidden>
+    <div className="bricka-ghost" data-status={status} style={style} aria-hidden>
       {text.length === 0 ? (
-        <span className="inlay-ghost-loading" />
+        <span className="bricka-ghost-loading" />
       ) : (
         <span
-          className="inlay-ghost-text"
+          className="bricka-ghost-text"
           onPointerDown={(event) => {
             event.preventDefault()
             onAccept()
@@ -39,7 +39,7 @@ export function GhostText({ ghost, onAccept }: GhostTextProps) {
         </span>
       )}
       {suggestions.length > 1 && (
-        <span className="inlay-ghost-count">
+        <span className="bricka-ghost-count">
           {index + 1}/{suggestions.length}
         </span>
       )}

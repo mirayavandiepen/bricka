@@ -6,7 +6,7 @@ function createId(): string {
   if (typeof crypto !== 'undefined' && 'randomUUID' in crypto) {
     return crypto.randomUUID()
   }
-  return `inlay-${Date.now().toString(36)}-${++nextId}`
+  return `bricka-${Date.now().toString(36)}-${++nextId}`
 }
 
 /** Match a file against an `<input accept>` string. */

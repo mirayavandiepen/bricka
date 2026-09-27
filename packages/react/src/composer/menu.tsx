@@ -48,7 +48,7 @@ function Highlight({ text, query }: { text: string; query: string }) {
     if (i === text.length || (run.length > 0 && isMarked !== isRunMarked)) {
       parts.push(
         isRunMarked ? (
-          <mark key={i} className="inlay-match">
+          <mark key={i} className="bricka-match">
             {run}
           </mark>
         ) : (
@@ -76,15 +76,15 @@ function DefaultItem({
   return (
     <>
       {icon && (
-        <span className="inlay-option-icon" aria-hidden>
+        <span className="bricka-option-icon" aria-hidden>
           {icon}
         </span>
       )}
-      <span className="inlay-option-label">
+      <span className="bricka-option-label">
         <Highlight text={item.label} query={query} />
       </span>
       {item.description && (
-        <span className="inlay-option-description">{item.description}</span>
+        <span className="bricka-option-description">{item.description}</span>
       )}
     </>
   )
@@ -147,7 +147,7 @@ export function ComposerMenu({ className, style }: ComposerMenuProps) {
   return createPortal(
     <div
       ref={menuElementRef}
-      className={['inlay-menu', className].filter(Boolean).join(' ')}
+      className={['bricka-menu', className].filter(Boolean).join(' ')}
       data-placement={position.placement}
       data-status={status}
       style={{
@@ -164,14 +164,14 @@ export function ComposerMenu({ className, style }: ComposerMenuProps) {
       onMouseDown={(event) => event.preventDefault()}
     >
       {status === 'loading' && items.length > 0 && (
-        <div className="inlay-menu-progress" aria-hidden />
+        <div className="bricka-menu-progress" aria-hidden />
       )}
       <div
         id={listboxId}
         role="listbox"
         aria-label={trigger.label ?? 'Suggestions'}
         aria-busy={status === 'loading' || undefined}
-        className="inlay-menu-list"
+        className="bricka-menu-list"
       >
         {toSections(items).map((section) => {
           const labelId = `${listboxId}-group-${section.start}`
@@ -187,7 +187,7 @@ export function ComposerMenu({ className, style }: ComposerMenuProps) {
                 aria-disabled={item.disabled || undefined}
                 data-active={isActive || undefined}
                 data-type={item.type}
-                className="inlay-option"
+                className="bricka-option"
                 onPointerMove={() => setActive(index)}
                 onClick={() => select(index)}
               >
@@ -209,12 +209,12 @@ export function ComposerMenu({ className, style }: ComposerMenuProps) {
               key={labelId}
               role="group"
               aria-labelledby={labelId}
-              className="inlay-menu-group"
+              className="bricka-menu-group"
             >
               <div
                 id={labelId}
                 role="presentation"
-                className="inlay-menu-group-label"
+                className="bricka-menu-group-label"
               >
                 {section.group}
               </div>
@@ -224,7 +224,7 @@ export function ComposerMenu({ className, style }: ComposerMenuProps) {
         })}
       </div>
       {notice !== null && (
-        <div className="inlay-menu-notice" data-status={status}>
+        <div className="bricka-menu-notice" data-status={status}>
           {notice}
         </div>
       )}

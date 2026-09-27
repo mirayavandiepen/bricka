@@ -122,7 +122,7 @@ export function App() {
         <div className="topbar-inner">
           <a className="brand" href="#introduction">
             <Logo />
-            <span className="wordmark">inlay</span>
+            <span className="wordmark">bricka</span>
           </a>
           <nav className="topbar-links" aria-label="Project">
             <details className="mobile-nav">

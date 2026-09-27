@@ -6,8 +6,8 @@
 
 body {
   margin: 0;
-  background: var(--inlay-bg);
-  color: var(--inlay-fg);
+  background: var(--bricka-bg);
+  color: var(--bricka-fg);
   font-family:
     system-ui,
     -apple-system,
@@ -33,7 +33,7 @@ body {
 .page-header p,
 .page-section p {
   margin: 4px 0 0;
-  color: var(--inlay-muted);
+  color: var(--bricka-muted);
 }
 
 .page-section {

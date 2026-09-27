@@ -71,8 +71,8 @@
   --orange: #fb6a1c;
   --yellow: #fbc81c;
 
-  --inlay-font: 'Sunghyun Sans', system-ui, sans-serif;
-  --inlay-font-mono: 'Geist Mono Variable', ui-monospace, monospace;
+  --bricka-font: 'Sunghyun Sans', system-ui, sans-serif;
+  --bricka-font-mono: 'Geist Mono Variable', ui-monospace, monospace;
   --header-height: 64px;
   /* Heavy, tightly tracked headings sit optically further left than body
      text, so body text steps in a touch to line up with them. */
@@ -167,7 +167,7 @@ body {
   margin: 0;
   background: var(--page-bg);
   color: var(--ink);
-  font-family: var(--inlay-font);
+  font-family: var(--bricka-font);
   font-size: 15px;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
@@ -412,7 +412,7 @@ a {
   border-radius: 999px;
   background: #f4f4f5;
   color: var(--text);
-  font-family: var(--inlay-font-mono);
+  font-family: var(--bricka-font-mono);
   font-size: 12px;
 }
 
@@ -617,8 +617,8 @@ a {
 }
 
 .readout dt {
-  color: var(--inlay-faint);
-  font-family: var(--inlay-font-mono);
+  color: var(--bricka-faint);
+  font-family: var(--bricka-font-mono);
   font-size: 11.5px;
 }
 
@@ -628,7 +628,7 @@ a {
 }
 
 .readout-text {
-  font-family: var(--inlay-font-mono);
+  font-family: var(--bricka-font-mono);
   font-size: 12px;
   white-space: pre-wrap;
   word-break: break-word;
@@ -647,7 +647,7 @@ a {
   padding: 0 10px 0 4px;
   border-radius: 999px;
   background: var(--card-bg);
-  font-family: var(--inlay-font-mono);
+  font-family: var(--bricka-font-mono);
   font-size: 12px;
   line-height: 24px;
   box-shadow: 0 0 0 1px rgb(23 23 23 / 0.06);
@@ -662,7 +662,7 @@ a {
 }
 
 .readout-empty {
-  color: var(--inlay-faint);
+  color: var(--bricka-faint);
 }
 
 /* --- Docs: one calm reading surface --- */
@@ -727,7 +727,7 @@ a {
   border-radius: 6px;
   background: #f4f4f5;
   color: var(--ink);
-  font-family: var(--inlay-font-mono);
+  font-family: var(--bricka-font-mono);
   font-size: 0.85em;
 }
 
@@ -741,7 +741,7 @@ kbd {
   box-shadow:
     0 0 0 1px rgb(23 23 23 / 0.1),
     0 1px 0 rgb(23 23 23 / 0.08);
-  font-family: var(--inlay-font-mono);
+  font-family: var(--bricka-font-mono);
   font-size: 11px;
   font-weight: 500;
   line-height: 20px;
@@ -757,7 +757,7 @@ kbd {
   border-radius: var(--block-radius);
   background: var(--code-bg);
   box-shadow: inset 0 0 0 1px var(--hairline);
-  font-family: var(--inlay-font-mono);
+  font-family: var(--bricka-font-mono);
   font-size: 13.5px;
 }
 
@@ -783,7 +783,7 @@ kbd {
   height: 40px;
   padding: 0 4px 0 16px;
   color: var(--faint);
-  font-family: var(--inlay-font-mono);
+  font-family: var(--bricka-font-mono);
   font-size: 12px;
 }
 
@@ -795,7 +795,7 @@ kbd {
   margin: 0;
   padding: 0 16px 16px;
   background: none !important;
-  font-family: var(--inlay-font-mono);
+  font-family: var(--bricka-font-mono);
   font-size: 13px;
   line-height: 1.7;
   tab-size: 2;
@@ -1093,14 +1093,14 @@ kbd {
 
 .prop-list dt code:not(.type) {
   color: var(--ink);
-  font-family: var(--inlay-font-mono);
+  font-family: var(--bricka-font-mono);
   font-size: 13px;
   font-weight: 500;
 }
 
 .prop-list code.type {
   color: #71717a;
-  font-family: var(--inlay-font-mono);
+  font-family: var(--bricka-font-mono);
   font-size: 12px;
 }
 
@@ -1123,7 +1123,7 @@ kbd {
 
 .section .api-title {
   margin: 0 0 4px;
-  font-family: var(--inlay-font-mono);
+  font-family: var(--bricka-font-mono);
   font-size: 16px;
   font-weight: 600;
   letter-spacing: -0.01em;

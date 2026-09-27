@@ -40,20 +40,20 @@ function DefaultAttachment({
   const detail = describe(attachment)
   return (
     <>
-      <span className="inlay-attachment-preview" aria-hidden>
+      <span className="bricka-attachment-preview" aria-hidden>
         {attachment.previewUrl ? (
           <img src={attachment.previewUrl} alt="" draggable={false} />
         ) : (
           <FileIcon />
         )}
       </span>
-      <span className="inlay-attachment-body">
-        <span className="inlay-attachment-name">{attachment.name}</span>
-        {detail && <span className="inlay-attachment-detail">{detail}</span>}
+      <span className="bricka-attachment-body">
+        <span className="bricka-attachment-name">{attachment.name}</span>
+        {detail && <span className="bricka-attachment-detail">{detail}</span>}
       </span>
       <button
         type="button"
-        className="inlay-attachment-remove"
+        className="bricka-attachment-remove"
         aria-label={`${removeLabel} ${attachment.name}`}
         disabled={isDisabled}
         onClick={onRemove}
@@ -62,7 +62,7 @@ function DefaultAttachment({
       </button>
       {attachment.status === 'uploading' && (
         <span
-          className="inlay-attachment-progress"
+          className="bricka-attachment-progress"
           style={{ transform: `scaleX(${attachment.progress ?? 0})` }}
           aria-hidden
         />
@@ -85,7 +85,7 @@ export function ComposerAttachments({
     <ul
       aria-label="Attachments"
       {...rest}
-      className={['inlay-attachments', className].filter(Boolean).join(' ')}
+      className={['bricka-attachments', className].filter(Boolean).join(' ')}
     >
       {attachments.map((attachment) => {
         const remove = () => {
@@ -95,7 +95,7 @@ export function ComposerAttachments({
         return (
           <li
             key={attachment.id}
-            className="inlay-attachment"
+            className="bricka-attachment"
             data-status={attachment.status}
             data-image={attachment.previewUrl ? true : undefined}
           >

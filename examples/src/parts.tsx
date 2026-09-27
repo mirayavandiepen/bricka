@@ -1,4 +1,4 @@
-import { serialize, type ComposerMessage, type Segment } from '@inlay/react'
+import { serialize, type ComposerMessage, type Segment } from '@bricka/react'
 import { useState } from 'react'
 import './examples.css'
 

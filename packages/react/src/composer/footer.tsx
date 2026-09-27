@@ -24,7 +24,7 @@ export function ComposerFooter({
   className,
   ...rest
 }: HTMLAttributes<HTMLDivElement>) {
-  return <div {...rest} className={cx('inlay-footer', className)} />
+  return <div {...rest} className={cx('bricka-footer', className)} />
 }
 
 export type ComposerActionProps = ButtonHTMLAttributes<HTMLButtonElement> & {
@@ -54,7 +54,7 @@ export const ComposerAction = forwardRef<
       disabled={disabled ?? isDisabled}
       onMouseDown={keepInputFocus}
       {...rest}
-      className={cx('inlay-action', className)}
+      className={cx('bricka-action', className)}
     />
   )
 })
@@ -108,7 +108,7 @@ export const ComposerSubmit = forwardRef<
       disabled={disabled ?? !canSubmit}
       onMouseDown={keepInputFocus}
       {...rest}
-      className={cx('inlay-submit', className)}
+      className={cx('bricka-submit', className)}
       onClick={(event) => {
         onClick?.(event)
         if (!event.defaultPrevented) submit()

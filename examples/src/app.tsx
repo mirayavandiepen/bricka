@@ -1,4 +1,4 @@
-import type { ComposerMessage } from '@inlay/react'
+import type { ComposerMessage } from '@bricka/react'
 import { useState, type ComponentType } from 'react'
 import { AgentComposer } from './agent-composer'
 import { CodingAssistant } from './coding-assistant'
@@ -52,7 +52,7 @@ export function App() {
   return (
     <main className="page">
       <header className="page-header">
-        <h1>Inlay examples</h1>
+        <h1>Bricka examples</h1>
         <p>Three composers built from the same primitives.</p>
       </header>
       {EXAMPLES.map((example) => (

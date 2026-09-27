@@ -18,7 +18,7 @@
   position: relative;
   display: inline-flex;
   align-items: center;
-  color: var(--inlay-muted);
+  color: var(--bricka-muted);
 }
 
 .example-select select {
@@ -36,12 +36,12 @@
 }
 
 .example-select select:hover {
-  background: var(--inlay-hover);
-  color: var(--inlay-fg);
+  background: var(--bricka-hover);
+  color: var(--bricka-fg);
 }
 
 .example-select select:focus-visible {
-  outline: 2px solid var(--inlay-accent);
+  outline: 2px solid var(--bricka-accent);
   outline-offset: 1px;
 }
 
@@ -55,28 +55,28 @@
   width: 1px;
   height: 16px;
   margin: 0 4px;
-  background: var(--inlay-border);
+  background: var(--bricka-border);
 }
 
 .example-status {
   margin-inline-start: auto;
   margin-inline-end: 6px;
-  color: var(--inlay-faint);
+  color: var(--bricka-faint);
   font-size: 12px;
   font-variant-numeric: tabular-nums;
 }
 
 .example-preview-empty {
   margin: 0;
-  color: var(--inlay-faint);
+  color: var(--bricka-faint);
   font-size: 13px;
 }
 
 .example-preview {
   overflow: hidden;
-  border-radius: var(--inlay-radius);
-  background: var(--inlay-bg);
-  box-shadow: var(--inlay-shadow);
+  border-radius: var(--bricka-radius);
+  background: var(--bricka-bg);
+  box-shadow: var(--bricka-shadow);
   font-size: 13px;
 }
 
@@ -87,17 +87,17 @@
   margin: 8px 8px 0;
   padding: 3px;
   /* 8px from the preview's corner, then 3px to the buttons. */
-  border-radius: calc(var(--inlay-radius) - 8px);
-  background: var(--inlay-hover);
+  border-radius: calc(var(--bricka-radius) - 8px);
+  background: var(--bricka-hover);
 }
 
 .example-preview-tabs button {
   height: 26px;
   padding: 0 12px;
   border: 0;
-  border-radius: calc(var(--inlay-radius) - 11px);
+  border-radius: calc(var(--bricka-radius) - 11px);
   background: none;
-  color: var(--inlay-muted);
+  color: var(--bricka-muted);
   font: inherit;
   font-size: 12px;
   font-weight: 500;
@@ -108,12 +108,12 @@
 }
 
 .example-preview-tabs button:hover {
-  color: var(--inlay-fg);
+  color: var(--bricka-fg);
 }
 
 .example-preview-tabs button[aria-selected='true'] {
-  background: var(--inlay-bg);
-  color: var(--inlay-fg);
+  background: var(--bricka-bg);
+  color: var(--bricka-fg);
   box-shadow:
     0 0 0 1px rgb(23 23 23 / 0.05),
     0 1px 3px rgb(23 23 23 / 0.1);
@@ -134,13 +134,13 @@
 
 .example-preview-meta {
   margin: 0;
-  color: var(--inlay-muted);
+  color: var(--bricka-muted);
   font-size: 12px;
 }
 
 .example-preview-plain {
-  color: var(--inlay-muted);
-  font-family: var(--inlay-font-mono);
+  color: var(--bricka-muted);
+  font-family: var(--bricka-font-mono);
   font-size: 12px;
   white-space: pre-wrap;
   word-break: break-word;
@@ -151,8 +151,8 @@
   margin: 0;
   padding: 14px 16px 16px;
   overflow: auto;
-  color: var(--inlay-muted);
-  font-family: var(--inlay-font-mono);
+  color: var(--bricka-muted);
+  font-family: var(--bricka-font-mono);
   font-size: 12px;
   line-height: 1.5;
 }
@@ -160,68 +160,68 @@
 .example-chip {
   padding: 2px 8px;
   border-radius: 999px;
-  background: var(--inlay-token-bg);
-  color: var(--inlay-token-fg);
+  background: var(--bricka-token-bg);
+  color: var(--bricka-token-fg);
   font-weight: 600;
 }
 
 .example-chip[data-trigger='/'] {
-  background: var(--inlay-selected);
-  color: var(--inlay-fg);
-  font-family: var(--inlay-font-mono);
+  background: var(--bricka-selected);
+  color: var(--bricka-fg);
+  font-family: var(--bricka-font-mono);
   font-size: 0.9em;
 }
 
 /* Each kind of context gets its own colour, like crayons in a box. */
 
-:is(.inlay-token, .inlay-option)[data-type] {
+:is(.bricka-token, .bricka-option)[data-type] {
   --tint: 47 125 246;
 }
 
-:is(.inlay-token, .inlay-option):is([data-type='person'], [data-type='agent']) {
+:is(.bricka-token, .bricka-option):is([data-type='person'], [data-type='agent']) {
   --tint: 226 61 128;
 }
 
-:is(.inlay-token, .inlay-option):is([data-type='tool'], [data-type='branch']) {
+:is(.bricka-token, .bricka-option):is([data-type='tool'], [data-type='branch']) {
   --tint: 22 150 88;
 }
 
-:is(.inlay-token, .inlay-option):is([data-type='issue'], [data-type='url']) {
+:is(.bricka-token, .bricka-option):is([data-type='issue'], [data-type='url']) {
   --tint: 230 96 14;
 }
 
-:is(.inlay-token, .inlay-option):is(
+:is(.bricka-token, .bricka-option):is(
   [data-type='document'],
   [data-type='article']
 ) {
   --tint: 124 77 232;
 }
 
-:is(.inlay-token, .inlay-option):is(
+:is(.bricka-token, .bricka-option):is(
   [data-type='dataset'],
   [data-type='source']
 ) {
   --tint: 13 140 128;
 }
 
-:is(.inlay-token, .inlay-option)[data-type='folder'] {
+:is(.bricka-token, .bricka-option)[data-type='folder'] {
   --tint: 190 128 0;
 }
 
-.inlay-token[data-type] {
+.bricka-token[data-type] {
   background: rgb(var(--tint) / 0.13);
   color: rgb(var(--tint));
 }
 
-.inlay-token[data-type]:hover {
+.bricka-token[data-type]:hover {
   background: rgb(var(--tint) / 0.19);
 }
 
-.inlay-token[data-type][data-selected] {
+.bricka-token[data-type][data-selected] {
   background: rgb(var(--tint) / 0.24);
   box-shadow: 0 0 0 1.5px rgb(var(--tint) / 0.6);
 }
 
-.inlay-option[data-type] .inlay-option-icon {
+.bricka-option[data-type] .bricka-option-icon {
   color: rgb(var(--tint));
 }

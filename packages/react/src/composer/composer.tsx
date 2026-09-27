@@ -290,7 +290,7 @@ export const Composer = forwardRef<ComposerApi, ComposerProps>(
         <InternalsContext.Provider value={internals}>
           <div
             {...rest}
-            className={['inlay-composer', className].filter(Boolean).join(' ')}
+            className={['bricka-composer', className].filter(Boolean).join(' ')}
             data-disabled={disabled || undefined}
             data-dragging={isDragging || undefined}
             data-empty={isEmpty || undefined}
@@ -302,7 +302,7 @@ export const Composer = forwardRef<ComposerApi, ComposerProps>(
           >
             {children}
             {isDragging && (
-              <div className="inlay-drop-overlay" aria-hidden>
+              <div className="bricka-drop-overlay" aria-hidden>
                 {labels.dropFiles}
               </div>
             )}
@@ -320,7 +320,7 @@ export const Composer = forwardRef<ComposerApi, ComposerProps>(
                 api.focus()
               }}
             />
-            <div className="inlay-sr-only" role="status" aria-live="polite">
+            <div className="bricka-sr-only" role="status" aria-live="polite">
               {announcement}
             </div>
           </div>

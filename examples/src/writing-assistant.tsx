@@ -7,7 +7,7 @@ import {
   useComposer,
   type ComposerMessage,
   type Trigger,
-} from '@inlay/react'
+} from '@bricka/react'
 import { useState } from 'react'
 import {
   ArticleIcon,

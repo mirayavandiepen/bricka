@@ -2,7 +2,7 @@ import { AgentComposer } from '@examples/agent-composer'
 import { CodingAssistant } from '@examples/coding-assistant'
 import { MessagePreview } from '@examples/parts'
 import { WritingAssistant } from '@examples/writing-assistant'
-import type { ComposerMessage } from '@inlay/react'
+import type { ComposerMessage } from '@bricka/react'
 import { useState, type ReactNode } from 'react'
 import { ApiReference } from './api'
 import { Code, CopyButton } from './code'
@@ -10,7 +10,7 @@ import { Section } from './section'
 import { Facts, KeyGrid, Note, Steps, Topics } from './ui'
 
 function GetStarted() {
-  const command = 'npm install @inlay/react'
+  const command = 'npm install @bricka/react'
   return (
     <Section
       id="get-started"
@@ -40,8 +40,8 @@ function GetStarted() {
                   Here, typing <kbd>@</kbd> lists files and people.
                 </p>
                 <Code title="chat.tsx">{`
-import { Composer, ComposerFooter, ComposerInput, ComposerSubmit } from '@inlay/react'
-import '@inlay/react/styles.css'
+import { Composer, ComposerFooter, ComposerInput, ComposerSubmit } from '@bricka/react'
+import '@bricka/react/styles.css'
 
 const mentions = {
   char: '@',
@@ -130,7 +130,7 @@ function ComposerDocs() {
   { type: 'token', trigger: '/', item: { id: 'a11y', label: 'accessibility' } },
 ]`}</Code>
                 <Code language="ts" title="helpers">{`
-import { getText, getTokens, serialize } from '@inlay/react'
+import { getText, getTokens, serialize } from '@bricka/react'
 
 getText(value)       // 'Fix @Composer.tsx and check /accessibility'
 getTokens(value, '@') // [{ id: 'src/Composer.tsx', ... }]
@@ -447,7 +447,7 @@ function AttachmentsDocs() {
       lede={
         <>
           Turn on <code>acceptFiles</code> and files arrive with the message.
-          Inlay never uploads anything itself.
+          Bricka never uploads anything itself.
         </>
       }
     >
@@ -559,20 +559,20 @@ function handleFiles(files: File[]) {
 }
 
 const THEME_TOKENS: Array<[string, string]> = [
-  ['--inlay-bg / --inlay-fg', 'Surface and text'],
+  ['--bricka-bg / --bricka-fg', 'Surface and text'],
   [
-    '--inlay-muted / --inlay-faint',
+    '--bricka-muted / --bricka-faint',
     'Secondary text, placeholder and ghost text',
   ],
-  ['--inlay-border / --inlay-border-strong', 'Resting and focused borders'],
-  ['--inlay-hover / --inlay-selected', 'Hover and active backgrounds'],
-  ['--inlay-accent', 'Focus rings, active tools and progress'],
-  ['--inlay-token-bg / --inlay-token-fg', 'Inline tokens'],
-  ['--inlay-token-selected', 'A token selected with Backspace or a click'],
-  ['--inlay-popover-bg / --inlay-popover-shadow', 'Menu and tooltip surfaces'],
-  ['--inlay-radius / --inlay-radius-sm', 'Composer and menu corners'],
-  ['--inlay-font / --inlay-font-mono / --inlay-font-size', 'Typography'],
-  ['--inlay-max-height', 'Height before the input scrolls'],
+  ['--bricka-border / --bricka-border-strong', 'Resting and focused borders'],
+  ['--bricka-hover / --bricka-selected', 'Hover and active backgrounds'],
+  ['--bricka-accent', 'Focus rings, active tools and progress'],
+  ['--bricka-token-bg / --bricka-token-fg', 'Inline tokens'],
+  ['--bricka-token-selected', 'A token selected with Backspace or a click'],
+  ['--bricka-popover-bg / --bricka-popover-shadow', 'Menu and tooltip surfaces'],
+  ['--bricka-radius / --bricka-radius-sm', 'Composer and menu corners'],
+  ['--bricka-font / --bricka-font-mono / --bricka-font-size', 'Typography'],
+  ['--bricka-max-height', 'Height before the input scrolls'],
 ]
 
 function StylingDocs() {
@@ -592,10 +592,10 @@ function StylingDocs() {
               <>
                 <Code language="css">{`
 :root {
-  --inlay-accent: #0f766e;
-  --inlay-token-bg: rgb(15 118 110 / 0.1);
-  --inlay-token-fg: #0f766e;
-  --inlay-radius: 8px;
+  --bricka-accent: #0f766e;
+  --bricka-token-bg: rgb(15 118 110 / 0.1);
+  --bricka-token-fg: #0f766e;
+  --bricka-radius: 8px;
 }`}</Code>
                 <dl className="prop-list" data-inline>
                   {THEME_TOKENS.map(([name, description]) => (
@@ -621,10 +621,10 @@ function StylingDocs() {
                   <code>data-type</code>.
                 </p>
                 <Code language="css">{`
-.inlay-token[data-type='person'] { border-radius: 999px; }
-.inlay-token[data-selected] { outline: 1px solid var(--inlay-accent); }
-.inlay-option[data-active] { background: var(--brand-50); }
-.inlay-composer[data-dragging] { border-style: dashed; }`}</Code>
+.bricka-token[data-type='person'] { border-radius: 999px; }
+.bricka-token[data-selected] { outline: 1px solid var(--bricka-accent); }
+.bricka-option[data-active] { background: var(--brand-50); }
+.bricka-composer[data-dragging] { border-style: dashed; }`}</Code>
               </>
             ),
           },
@@ -779,7 +779,7 @@ function KeyboardDocs() {
     >
       <KeyGrid items={SHORTCUTS} />
       <Note>
-        Inlay claims no shortcuts of its own. Bold and other formatting keys are
+        Bricka claims no shortcuts of its own. Bold and other formatting keys are
         blocked, since the content is plain text with tokens.
       </Note>
     </Section>

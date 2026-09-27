@@ -33,7 +33,7 @@ function renderWithFiles(props: Partial<ComposerProps> = {}) {
 }
 
 function editorOf(container: HTMLElement): HTMLElement {
-  return container.querySelector('.inlay-input')!
+  return container.querySelector('.bricka-input')!
 }
 
 function paste(
@@ -192,7 +192,7 @@ describe('attachments', () => {
       [expect.objectContaining({ name: 'a.png' })],
       'paste'
     )
-    expect(container.querySelector('.inlay-attachments')).toBeNull()
+    expect(container.querySelector('.bricka-attachments')).toBeNull()
   })
 
   it('removes attachments and submits them with the message', () => {
@@ -221,7 +221,7 @@ describe('attachments', () => {
         attachments: [expect.objectContaining({ name: 'b.pdf' })],
       })
     )
-    expect(container.querySelector('.inlay-attachments')).toBeNull()
+    expect(container.querySelector('.bricka-attachments')).toBeNull()
   })
 
   it('blocks submit while an upload is pending and shows progress', () => {
@@ -238,7 +238,7 @@ describe('attachments', () => {
     press(editor, 'Enter')
     expect(onSubmit).not.toHaveBeenCalled()
     expect(screen.getByText('Uploading 40%')).toBeTruthy()
-    expect(container.querySelector('.inlay-attachment-progress')).not.toBeNull()
+    expect(container.querySelector('.bricka-attachment-progress')).not.toBeNull()
   })
 
   it('supports custom attachment rendering', () => {
@@ -277,7 +277,7 @@ describe('drag and drop', () => {
   it('shows a drop state and hands dropped files to the host', () => {
     const onFiles = vi.fn()
     const { container } = renderWithFiles({ onFiles })
-    const root = container.querySelector<HTMLElement>('.inlay-composer')!
+    const root = container.querySelector<HTMLElement>('.bricka-composer')!
     const files = [file('a.png', 'image/png')]
     fireEvent.dragEnter(root, { dataTransfer: dataTransfer(files) })
     expect(root.hasAttribute('data-dragging')).toBe(true)
@@ -289,7 +289,7 @@ describe('drag and drop', () => {
 
   it('tracks nested drag enter and leave', () => {
     const { container } = renderWithFiles()
-    const root = container.querySelector<HTMLElement>('.inlay-composer')!
+    const root = container.querySelector<HTMLElement>('.bricka-composer')!
     const transfer = dataTransfer([])
     fireEvent.dragEnter(root, { dataTransfer: transfer })
     fireEvent.dragEnter(editorOf(container), { dataTransfer: transfer })
@@ -301,13 +301,13 @@ describe('drag and drop', () => {
 
   it('ignores drags when files are not accepted or when disabled', () => {
     const { container } = renderComposer()
-    const root = container.querySelector<HTMLElement>('.inlay-composer')!
+    const root = container.querySelector<HTMLElement>('.bricka-composer')!
     fireEvent.dragEnter(root, { dataTransfer: dataTransfer([]) })
     expect(root.hasAttribute('data-dragging')).toBe(false)
     cleanup()
     const disabled = renderWithFiles({ disabled: true })
     const disabledRoot =
-      disabled.container.querySelector<HTMLElement>('.inlay-composer')!
+      disabled.container.querySelector<HTMLElement>('.bricka-composer')!
     fireEvent.dragEnter(disabledRoot, { dataTransfer: dataTransfer([]) })
     expect(disabledRoot.hasAttribute('data-dragging')).toBe(false)
   })

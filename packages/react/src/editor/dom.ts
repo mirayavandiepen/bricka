@@ -1,7 +1,7 @@
 import type { ComposerValue, ContextItem, Segment } from '../types'
 
 /** Attribute that marks a token host span and holds its registry key. */
-export const TOKEN_ATTR = 'data-inlay-token'
+export const TOKEN_ATTR = 'data-bricka-token'
 /** Zero-width text kept after every token so the caret has a landing spot. */
 export const SENTINEL = '\u200B'
 
@@ -52,7 +52,7 @@ export function createTokenElement(
   const span = document.createElement('span')
   span.setAttribute(TOKEN_ATTR, registry.add(entry))
   span.contentEditable = 'false'
-  span.className = 'inlay-token-host'
+  span.className = 'bricka-token-host'
   if (entry.trigger) span.dataset.trigger = entry.trigger
   if (entry.item.type) span.dataset.type = entry.item.type
   return span

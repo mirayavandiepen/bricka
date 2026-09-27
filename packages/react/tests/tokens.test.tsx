@@ -43,8 +43,8 @@ const sentence: ComposerValue = [
 describe('rendering', () => {
   it('renders label, type and trigger data', () => {
     const { editor } = setup(sentence)
-    const token = editor.querySelector('.inlay-token')!
-    expect(token.querySelector('.inlay-token-label')?.textContent).toBe(
+    const token = editor.querySelector('.bricka-token')!
+    expect(token.querySelector('.bricka-token-label')?.textContent).toBe(
       'Composer.tsx'
     )
     expect(token.getAttribute('data-type')).toBe('file')
@@ -65,7 +65,7 @@ describe('rendering', () => {
   it('shows a tooltip with the description after hovering', () => {
     vi.useFakeTimers()
     const { editor } = setup(sentence)
-    fireEvent.mouseEnter(editor.querySelector('.inlay-token')!)
+    fireEvent.mouseEnter(editor.querySelector('.bricka-token')!)
     expect(document.querySelector('[role="tooltip"]')).toBeNull()
     act(() => {
       vi.advanceTimersByTime(500)
@@ -83,7 +83,7 @@ describe('Backspace', () => {
     const host = tokenHosts(editor)[0]
     expect(host.hasAttribute('data-selected')).toBe(true)
     expect(
-      editor.querySelector('.inlay-token')?.hasAttribute('data-selected')
+      editor.querySelector('.bricka-token')?.hasAttribute('data-selected')
     ).toBe(true)
     expect(editor.style.caretColor).toBe('transparent')
     expect(onValueChange).not.toHaveBeenCalled()
@@ -172,11 +172,11 @@ describe('Delete and arrows', () => {
 describe('pointer', () => {
   it('selects on click and removes with the hover button', () => {
     const { editor, onValueChange } = setup(sentence)
-    const token = editor.querySelector('.inlay-token')!
+    const token = editor.querySelector('.bricka-token')!
     fireEvent.mouseDown(token)
     expect(tokenHosts(editor)[0].hasAttribute('data-selected')).toBe(true)
     fireEvent.mouseEnter(token)
-    fireEvent.mouseDown(editor.querySelector('.inlay-token-remove')!)
+    fireEvent.mouseDown(editor.querySelector('.bricka-token-remove')!)
     expect(tokenHosts(editor)).toHaveLength(0)
     expect(onValueChange).toHaveBeenLastCalledWith([
       { type: 'text', text: 'Fix ' },
@@ -198,7 +198,7 @@ describe('clipboard', () => {
     expect(data.get('text/plain')).toBe('Fix @Composer.tsx now')
     expect(data.get('text/plain')).not.toContain(SENTINEL)
     const json = JSON.parse(
-      data.get('application/x-inlay+json')!
+      data.get('application/x-bricka+json')!
     ) as Array<unknown>
     expect(json[1]).toMatchObject({
       type: 'token',

@@ -12,7 +12,7 @@ import {
   type ComposerValue,
   type ContextItem,
   type Trigger,
-} from '@inlay/react'
+} from '@bricka/react'
 import { useState, type Ref } from 'react'
 import {
   BranchIcon,

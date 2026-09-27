@@ -10,9 +10,9 @@ export default defineConfig({
   resolve: {
     // Use the library source directly for instant feedback while developing.
     alias: [
-      { find: /^@inlay\/react$/, replacement: source('index.ts') },
+      { find: /^@bricka\/react$/, replacement: source('index.ts') },
       {
-        find: /^@inlay\/react\/styles\.css$/,
+        find: /^@bricka\/react\/styles\.css$/,
         replacement: source('styles.css'),
       },
     ],

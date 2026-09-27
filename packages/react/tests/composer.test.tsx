@@ -107,7 +107,7 @@ describe('value', () => {
       )
     }
     const { container } = render(<Controlled />)
-    const editor = container.querySelector<HTMLElement>('.inlay-input')!
+    const editor = container.querySelector<HTMLElement>('.bricka-input')!
     const node = editor.firstChild
     type(editor, '!')
     expect(editor.firstChild).toBe(node)
@@ -133,7 +133,7 @@ describe('value', () => {
     }
     const { container } = render(<Relabel />)
     fireEvent.click(screen.getByText('rename'))
-    expect(container.querySelector('.inlay-token-label')?.textContent).toBe(
+    expect(container.querySelector('.bricka-token-label')?.textContent).toBe(
       'new'
     )
   })
@@ -252,7 +252,7 @@ describe('focus', () => {
 
   it('focuses the input when empty composer chrome is clicked', () => {
     const { container, editor } = renderComposer()
-    fireEvent.mouseDown(container.querySelector('.inlay-footer')!)
+    fireEvent.mouseDown(container.querySelector('.bricka-footer')!)
     expect(document.activeElement).toBe(editor)
   })
 

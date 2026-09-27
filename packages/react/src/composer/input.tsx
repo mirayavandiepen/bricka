@@ -61,7 +61,7 @@ import { TokenView } from './token'
 import { useAutocomplete } from './use-autocomplete'
 import { useTriggerMenu } from './use-trigger-menu'
 
-const CLIPBOARD_TYPE = 'application/x-inlay+json'
+const CLIPBOARD_TYPE = 'application/x-bricka+json'
 const NO_TRIGGERS: Array<Trigger> = []
 const useIsomorphicLayoutEffect =
   typeof window === 'undefined' ? useEffect : useLayoutEffect
@@ -722,7 +722,7 @@ export function ComposerInput({
   return (
     <div
       ref={wrapperRef}
-      className="inlay-field"
+      className="bricka-field"
       data-single-line={singleLine || undefined}
     >
       <div
@@ -730,7 +730,7 @@ export function ComposerInput({
         aria-label={placeholder}
         {...rest}
         ref={editorRef}
-        className={['inlay-input', className].filter(Boolean).join(' ')}
+        className={['bricka-input', className].filter(Boolean).join(' ')}
         contentEditable={!isDisabled}
         suppressContentEditableWarning
         role="textbox"

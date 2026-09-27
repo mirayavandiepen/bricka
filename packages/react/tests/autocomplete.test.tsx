@@ -22,7 +22,7 @@ afterEach(() => {
 })
 
 function ghostText(): string | null {
-  return document.querySelector('.inlay-ghost-text')?.textContent ?? null
+  return document.querySelector('.bricka-ghost-text')?.textContent ?? null
 }
 
 function setup(autocomplete: AutocompleteSource, extra = {}) {
@@ -128,7 +128,7 @@ describe('keyboard', () => {
     const { editor } = setup(() => [' one', ' two', ''])
     type(editor, 'pick')
     await advance(300)
-    expect(document.querySelector('.inlay-ghost-count')?.textContent).toBe(
+    expect(document.querySelector('.bricka-ghost-count')?.textContent).toBe(
       '1/2'
     )
     press(editor, 'Tab', { shiftKey: true })
@@ -176,7 +176,7 @@ describe('keyboard', () => {
     const { editor } = setup(() => ' world')
     type(editor, 'hello')
     await advance(300)
-    fireEvent.pointerDown(document.querySelector('.inlay-ghost-text')!)
+    fireEvent.pointerDown(document.querySelector('.bricka-ghost-text')!)
     expect(visibleText(editor)).toBe('hello world')
   })
 
@@ -282,10 +282,10 @@ describe('staleness and cancellation', () => {
     })
     type(editor, 'a')
     await advance(300)
-    expect(document.querySelector('.inlay-ghost')).toBeNull()
+    expect(document.querySelector('.bricka-ghost')).toBeNull()
     type(editor, 'b')
     await advance(300)
-    expect(document.querySelector('.inlay-ghost')).toBeNull()
+    expect(document.querySelector('.bricka-ghost')).toBeNull()
     expect(onError).toHaveBeenCalledWith(failure, 'autocomplete')
   })
 
@@ -294,9 +294,9 @@ describe('staleness and cancellation', () => {
     type(editor, 'a')
     await advance(300)
     expect(
-      document.querySelector('.inlay-ghost')?.getAttribute('data-status')
+      document.querySelector('.bricka-ghost')?.getAttribute('data-status')
     ).toBe('loading')
-    expect(document.querySelector('.inlay-ghost-loading')).not.toBeNull()
+    expect(document.querySelector('.bricka-ghost-loading')).not.toBeNull()
   })
 
   it('does not request during IME composition', async () => {
@@ -324,12 +324,12 @@ describe('streaming', () => {
     await advance(300)
     expect(ghostText()).toBe(' and then')
     expect(
-      document.querySelector('.inlay-ghost')?.getAttribute('data-status')
+      document.querySelector('.bricka-ghost')?.getAttribute('data-status')
     ).toBe('streaming')
     await act(async () => release())
     expect(ghostText()).toBe(' and then more')
     expect(
-      document.querySelector('.inlay-ghost')?.getAttribute('data-status')
+      document.querySelector('.bricka-ghost')?.getAttribute('data-status')
     ).toBe('ready')
     press(editor, 'Tab')
     expect(visibleText(editor)).toBe('first and then more')

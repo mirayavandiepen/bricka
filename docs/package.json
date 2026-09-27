@@ -1,5 +1,5 @@
 {
-  "name": "inlay-docs",
+  "name": "bricka-docs",
   "private": true,
   "type": "module",
   "scripts": {
@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@fontsource-variable/geist-mono": "^5.2.0",
-    "@inlay/react": "workspace:*",
+    "@bricka/react": "workspace:*",
     "lucide-react": "^1.48.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
