@@ -240,6 +240,7 @@
 }
 
 .bricka-option[data-type] .bricka-option-icon {
+  background: rgb(var(--tint) / 0.1);
   color: rgb(var(--tint));
 }
 
