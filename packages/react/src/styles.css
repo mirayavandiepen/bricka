@@ -10,74 +10,82 @@
 
   --bricka-bg: #ffffff;
   --bricka-fg: #171717;
-  --bricka-muted: #6b6b70;
-  --bricka-faint: #a3a3a8;
-  --bricka-border: #ececee;
-  --bricka-border-strong: #d6d6da;
-  --bricka-hover: rgb(23 23 23 / 0.05);
-  --bricka-selected: rgb(23 23 23 / 0.07);
+  --bricka-muted: #66666d;
+  --bricka-faint: #a1a1a8;
+  --bricka-border: rgb(23 23 23 / 0.08);
+  --bricka-border-strong: rgb(23 23 23 / 0.16);
+  --bricka-hover: rgb(23 23 23 / 0.045);
+  --bricka-selected: rgb(23 23 23 / 0.065);
   --bricka-accent: #2f7df6;
   --bricka-accent-fg: #ffffff;
-  --bricka-focus: rgb(47 125 246 / 0.16);
+  --bricka-focus: rgb(47 125 246 / 0.14);
   --bricka-danger: #e5484d;
   --bricka-shadow:
-    0 0 0 1px rgb(23 23 23 / 0.06), 0 1px 2px rgb(23 23 23 / 0.04),
-    0 10px 28px -10px rgb(23 23 23 / 0.12);
+    0 0 0 1px rgb(23 23 23 / 0.07), 0 1px 2px rgb(23 23 23 / 0.04),
+    0 8px 24px -12px rgb(23 23 23 / 0.12);
   --bricka-popover-bg: #ffffff;
   --bricka-popover-shadow:
-    0 0 0 1px rgb(23 23 23 / 0.06), 0 2px 4px rgb(23 23 23 / 0.04),
-    0 16px 36px -12px rgb(23 23 23 / 0.2);
-  --bricka-token-bg: rgb(47 125 246 / 0.12);
+    0 0 0 1px rgb(23 23 23 / 0.07), 0 2px 4px rgb(23 23 23 / 0.04),
+    0 18px 40px -12px rgb(23 23 23 / 0.22);
+  --bricka-token-bg: rgb(47 125 246 / 0.11);
   --bricka-token-fg: #1b63d8;
-  --bricka-token-selected: rgb(47 125 246 / 0.24);
+  --bricka-token-selected: rgb(47 125 246 / 0.22);
 }
 
 @media (prefers-color-scheme: dark) {
   :root:where(:not(.light, [data-theme='light'])) {
-    --bricka-bg: #161618;
-    --bricka-fg: #ececf0;
-    --bricka-muted: #9a9aa4;
-    --bricka-faint: #66666f;
-    --bricka-border: #29292e;
-    --bricka-border-strong: #3c3c43;
+    --bricka-bg: #18181b;
+    --bricka-fg: #ededef;
+    --bricka-muted: #a0a0a8;
+    --bricka-faint: #6c6c74;
+    --bricka-border: rgb(255 255 255 / 0.08);
+    --bricka-border-strong: rgb(255 255 255 / 0.16);
     --bricka-hover: rgb(255 255 255 / 0.05);
-    --bricka-selected: rgb(255 255 255 / 0.085);
-    --bricka-accent: #7d9bff;
-    --bricka-accent-fg: #0e1018;
-    --bricka-focus: rgb(125 155 255 / 0.16);
-    --bricka-danger: #f0686c;
-    --bricka-shadow: 0 0 0 1px #29292e;
-    --bricka-popover-bg: #1c1c1f;
+    --bricka-selected: rgb(255 255 255 / 0.08);
+    --bricka-accent: #5e9bff;
+    --bricka-accent-fg: #0b1220;
+    --bricka-focus: rgb(94 155 255 / 0.22);
+    --bricka-danger: #ff6b70;
+    /* In the dark, a lit top edge does the work a drop shadow can't. */
+    --bricka-shadow:
+      0 0 0 1px rgb(255 255 255 / 0.08), inset 0 1px 0 rgb(255 255 255 / 0.04),
+      0 8px 24px -12px rgb(0 0 0 / 0.6);
+    --bricka-popover-bg: #1d1d21;
     --bricka-popover-shadow:
-      0 1px 2px rgb(0 0 0 / 0.3), 0 10px 28px -8px rgb(0 0 0 / 0.55);
-    --bricka-token-bg: rgb(125 155 255 / 0.13);
-    --bricka-token-fg: #aebfff;
-    --bricka-token-selected: rgb(125 155 255 / 0.28);
+      0 0 0 1px rgb(255 255 255 / 0.09), inset 0 1px 0 rgb(255 255 255 / 0.05),
+      0 18px 44px -12px rgb(0 0 0 / 0.7);
+    --bricka-token-bg: rgb(94 155 255 / 0.16);
+    --bricka-token-fg: #a8c8ff;
+    --bricka-token-selected: rgb(94 155 255 / 0.3);
     color-scheme: dark;
   }
 }
 
 .dark,
 [data-theme='dark'] {
-  --bricka-bg: #161618;
-  --bricka-fg: #ececf0;
-  --bricka-muted: #9a9aa4;
-  --bricka-faint: #66666f;
-  --bricka-border: #29292e;
-  --bricka-border-strong: #3c3c43;
+  --bricka-bg: #18181b;
+  --bricka-fg: #ededef;
+  --bricka-muted: #a0a0a8;
+  --bricka-faint: #6c6c74;
+  --bricka-border: rgb(255 255 255 / 0.08);
+  --bricka-border-strong: rgb(255 255 255 / 0.16);
   --bricka-hover: rgb(255 255 255 / 0.05);
-  --bricka-selected: rgb(255 255 255 / 0.085);
-  --bricka-accent: #7d9bff;
-  --bricka-accent-fg: #0e1018;
-  --bricka-focus: rgb(125 155 255 / 0.16);
-  --bricka-danger: #f0686c;
-  --bricka-shadow: 0 0 0 1px #29292e;
-  --bricka-popover-bg: #1c1c1f;
+  --bricka-selected: rgb(255 255 255 / 0.08);
+  --bricka-accent: #5e9bff;
+  --bricka-accent-fg: #0b1220;
+  --bricka-focus: rgb(94 155 255 / 0.22);
+  --bricka-danger: #ff6b70;
+  /* In the dark, a lit top edge does the work a drop shadow can't. */
+  --bricka-shadow:
+    0 0 0 1px rgb(255 255 255 / 0.08), inset 0 1px 0 rgb(255 255 255 / 0.04),
+    0 8px 24px -12px rgb(0 0 0 / 0.6);
+  --bricka-popover-bg: #1d1d21;
   --bricka-popover-shadow:
-    0 1px 2px rgb(0 0 0 / 0.3), 0 10px 28px -8px rgb(0 0 0 / 0.55);
-  --bricka-token-bg: rgb(125 155 255 / 0.13);
-  --bricka-token-fg: #aebfff;
-  --bricka-token-selected: rgb(125 155 255 / 0.28);
+    0 0 0 1px rgb(255 255 255 / 0.09), inset 0 1px 0 rgb(255 255 255 / 0.05),
+    0 18px 44px -12px rgb(0 0 0 / 0.7);
+  --bricka-token-bg: rgb(94 155 255 / 0.16);
+  --bricka-token-fg: #a8c8ff;
+  --bricka-token-selected: rgb(94 155 255 / 0.3);
   color-scheme: dark;
 }
 
@@ -106,8 +114,9 @@
 
 .bricka-composer:focus-within {
   box-shadow:
-    var(--bricka-shadow),
-    0 0 0 4px var(--bricka-focus);
+    0 0 0 1px color-mix(in srgb, var(--bricka-accent) 50%, transparent),
+    0 0 0 4px var(--bricka-focus),
+    var(--bricka-shadow);
 }
 
 .bricka-composer[data-disabled] {
@@ -154,7 +163,7 @@
   white-space: pre-wrap;
   overflow-wrap: break-word;
   word-break: break-word;
-  caret-color: var(--bricka-fg);
+  caret-color: var(--bricka-accent);
   scrollbar-width: thin;
 }
 
@@ -217,7 +226,8 @@
 
 .bricka-token[data-selected] {
   background: var(--bricka-token-selected);
-  box-shadow: 0 0 0 1px color-mix(in srgb, var(--bricka-accent) 55%, transparent);
+  box-shadow: 0 0 0 1px
+    color-mix(in srgb, var(--bricka-accent) 55%, transparent);
 }
 
 .bricka-token[data-trigger='/'] {
@@ -276,6 +286,7 @@
   z-index: 1001;
   max-width: 280px;
   padding: 5px 10px;
+  box-shadow: 0 4px 12px -4px rgb(0 0 0 / 0.25);
   border-radius: var(--bricka-radius-sm);
   background: var(--bricka-fg);
   color: var(--bricka-bg);
@@ -336,16 +347,18 @@
   box-shadow: var(--bricka-popover-shadow);
   color: var(--bricka-fg);
   font-family: var(--bricka-font, inherit);
-  font-size: 13px;
+  font-size: 13.5px;
   line-height: 1.4;
-  --bricka-enter-y: -3px;
-  --bricka-enter-scale: 0.97;
+  /* Opened from the keyboard many times a day: quick and barely there,
+     growing out of the trigger rather than the middle. */
+  --bricka-enter-y: -4px;
+  --bricka-enter-scale: 0.98;
   transform-origin: top left;
-  animation: bricka-enter 160ms cubic-bezier(0.2, 0.9, 0.3, 1);
+  animation: bricka-enter 140ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .bricka-menu[data-placement='above'] {
-  --bricka-enter-y: 3px;
+  --bricka-enter-y: 4px;
   transform-origin: bottom left;
 }
 
@@ -355,8 +368,11 @@
   padding: 6px;
   overflow-y: auto;
   overscroll-behavior: contain;
-  scroll-padding: 6px;
+  /* Room for the sticky group label, so the active option never hides
+     beneath it when it scrolls into view. */
+  scroll-padding: 32px 6px 6px;
   scrollbar-width: thin;
+  scrollbar-color: var(--bricka-border-strong) transparent;
 }
 
 .bricka-menu-list:empty {
@@ -364,14 +380,27 @@
 }
 
 .bricka-menu-group + .bricka-menu-group {
-  margin-top: 4px;
+  margin-top: 6px;
 }
 
+/* Labels stick while their group scrolls, so long lists keep context. */
 .bricka-menu-group-label {
-  padding: 6px 10px 4px;
+  position: sticky;
+  /* Sticky offsets start inside the list's 6px padding; pull back to the
+     edge so the label never overlaps the first option. */
+  top: -6px;
+  z-index: 1;
+  margin: -6px -6px 0;
+  padding: 10px 16px 5px;
+  background: var(--bricka-popover-bg);
   color: var(--bricka-faint);
   font-size: 11.5px;
-  font-weight: 600;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.bricka-menu-group + .bricka-menu-group .bricka-menu-group-label {
+  margin-top: 0;
 }
 
 .bricka-option {
@@ -380,6 +409,7 @@
   gap: 10px;
   min-height: 34px;
   padding: 0 10px;
+  color: var(--bricka-fg);
   /* Concentric with the menu: its radius minus the list's 6px padding. */
   border-radius: calc(var(--bricka-radius) - 10px);
   cursor: default;
@@ -387,12 +417,18 @@
   -webkit-user-select: none;
 }
 
+/* Instant, never eased: the highlight has to keep up with the keys. */
 .bricka-option[data-active] {
   background: var(--bricka-selected);
 }
 
+.bricka-option[data-active] .bricka-option-icon {
+  color: var(--bricka-fg);
+}
+
 .bricka-option[aria-disabled] {
   opacity: 0.45;
+  cursor: not-allowed;
 }
 
 .bricka-option-icon {
@@ -422,29 +458,23 @@
   flex: 1 1 0;
   min-width: 0;
   overflow: hidden;
-  color: var(--bricka-muted);
-  font-size: 12px;
+  color: var(--bricka-faint);
+  font-size: 12.5px;
   text-align: right;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
+/* Colour, not weight: bold letters would shift the label on every key. */
 .bricka-match {
   background: none;
-  color: inherit;
-  text-decoration: underline;
-  text-decoration-color: color-mix(
-    in srgb,
-    var(--bricka-accent) 60%,
-    transparent
-  );
-  text-decoration-thickness: 1.5px;
-  text-underline-offset: 2px;
+  color: var(--bricka-accent);
 }
 
 .bricka-menu-notice {
-  padding: 10px 12px;
+  padding: 12px 16px;
   color: var(--bricka-muted);
+  font-size: 13px;
 }
 
 .bricka-menu-notice[data-status='error'] {
@@ -455,8 +485,10 @@
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 2;
   width: 30%;
-  height: 1px;
+  height: 2px;
+  border-radius: 999px;
   background: var(--bricka-accent);
   opacity: 0;
   animation: bricka-progress 900ms ease-in-out 150ms infinite;
@@ -555,11 +587,6 @@
   cursor: pointer;
 }
 
-.bricka-attachment-remove:hover {
-  background: var(--bricka-hover);
-  color: var(--bricka-fg);
-}
-
 .bricka-attachment-progress {
   position: absolute;
   right: 0;
@@ -618,12 +645,25 @@
   color: var(--bricka-muted);
 }
 
-.bricka-action:hover:not(:disabled) {
-  background: var(--bricka-hover);
-  color: var(--bricka-fg);
+/* Hover only where there's a real pointer; on touch it would stick. */
+@media (hover: hover) {
+  .bricka-action:hover:not(:disabled) {
+    background: var(--bricka-hover);
+    color: var(--bricka-fg);
+  }
+
+  .bricka-submit:hover:not(:disabled) {
+    opacity: 0.86;
+  }
+
+  .bricka-attachment-remove:hover {
+    background: var(--bricka-hover);
+    color: var(--bricka-fg);
+  }
 }
 
-.bricka-action[data-active] {
+.bricka-action[data-active],
+.bricka-action[data-active]:hover {
   background: var(--bricka-token-bg);
   color: var(--bricka-token-fg);
 }
@@ -632,10 +672,6 @@
   padding: 0;
   background: var(--bricka-fg);
   color: var(--bricka-bg);
-}
-
-.bricka-submit:hover:not(:disabled) {
-  opacity: 0.86;
 }
 
 .bricka-submit:disabled {
@@ -653,7 +689,7 @@
 .bricka-submit:focus-visible,
 .bricka-attachment-remove:focus-visible {
   outline: 2px solid var(--bricka-accent);
-  outline-offset: 1px;
+  outline-offset: 2px;
 }
 
 .bricka-sr-only {
@@ -718,14 +754,15 @@
   }
 }
 
+/* Transform only, so it stays smooth while results render. */
 @keyframes bricka-progress {
   0% {
     opacity: 1;
-    left: -30%;
+    translate: -100% 0;
   }
   100% {
     opacity: 1;
-    left: 100%;
+    translate: 340% 0;
   }
 }
 
@@ -747,6 +784,22 @@
 }
 
 @media (forced-colors: active) {
+  /* Shadows vanish in forced colours; give surfaces a real edge. */
+  .bricka-composer,
+  .bricka-menu,
+  .bricka-tooltip {
+    border: 1px solid CanvasText;
+  }
+
+  .bricka-composer:focus-within {
+    outline: 2px solid Highlight;
+    outline-offset: 2px;
+  }
+
+  .bricka-match {
+    color: Highlight;
+  }
+
   .bricka-token {
     border: 1px solid CanvasText;
   }
