@@ -123,8 +123,9 @@ const drafts: Array<[RegExp, Array<string>]> = [
 function WordCount() {
   const { value } = useComposer()
   const words = getText(value).trim().split(/\s+/).filter(Boolean).length
+  // Hidden until there's something to count; fades in beside Send.
   return (
-    <span className="example-status">
+    <span className="example-status" data-empty={words === 0 || undefined}>
       {words === 1 ? '1 word' : `${words} words`}
     </span>
   )
