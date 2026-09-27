@@ -137,6 +137,13 @@ export function ComposerMenu({ className, style }: ComposerMenuProps) {
   const { trigger, items, status, query, position } = menu
   if (status === 'idle' && items.length === 0) return null
 
+  // Ungrouped lists get the trigger's label as a heading, so a `/` menu
+  // reads as "Commands" the way grouped lists read as "Files".
+  const heading =
+    items.length > 0 && items.every((item) => !item.group)
+      ? trigger.label
+      : undefined
+
   let notice: ReactNode = null
   if (items.length === 0) {
     if (status === 'loading') notice = labels.loading
@@ -150,6 +157,7 @@ export function ComposerMenu({ className, style }: ComposerMenuProps) {
       className={['bricka-menu', className].filter(Boolean).join(' ')}
       data-placement={position.placement}
       data-status={status}
+      data-trigger={trigger.char}
       style={{
         ...theme,
         position: 'fixed',
@@ -173,6 +181,11 @@ export function ComposerMenu({ className, style }: ComposerMenuProps) {
         aria-busy={status === 'loading' || undefined}
         className="bricka-menu-list"
       >
+        {heading && (
+          <div className="bricka-menu-group-label" aria-hidden>
+            {heading}
+          </div>
+        )}
         {toSections(items).map((section) => {
           const labelId = `${listboxId}-group-${section.start}`
           const options = section.items.map((item, offset) => {
