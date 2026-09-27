@@ -536,69 +536,35 @@ a {
 }
 
 .readout {
-  display: grid;
-  gap: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
   margin: 0;
-  padding: 14px 18px;
-  border-radius: var(--block-radius);
-  box-shadow: inset 0 0 0 1px var(--hairline);
+  padding-left: 2px;
+  color: var(--faint);
   font-size: 13px;
 }
 
-.readout > div {
-  display: grid;
-  grid-template-columns: 88px minmax(0, 1fr);
-  gap: 12px;
-  align-items: baseline;
+.readout-label {
+  margin-right: 4px;
 }
 
-.readout dt {
-  color: var(--faint);
-  font-family: var(--bricka-font-mono);
-  font-size: 11.5px;
-}
-
-.readout dd {
-  margin: 0;
-  min-width: 0;
-}
-
-.readout-text {
-  font-family: var(--bricka-font-mono);
-  font-size: 12px;
-  white-space: pre-wrap;
-  word-break: break-word;
-}
-
-.readout-tokens {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.readout-token {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 0 10px 0 4px;
-  border-radius: 999px;
-  background: var(--card-bg);
-  font-family: var(--bricka-font-mono);
-  font-size: 12px;
-  line-height: 24px;
-  box-shadow: 0 0 0 1px var(--hairline);
-}
-
-.readout-token span {
+.readout-chip {
   padding: 0 8px;
   border-radius: 999px;
-  background: rgb(47 125 246 / 0.12);
-  color: #1b63d8;
-  line-height: 18px;
+  background: var(--card-bg);
+  box-shadow: 0 0 0 1px var(--hairline);
+  color: var(--text);
+  font-family: var(--bricka-font-mono);
+  font-size: 11.5px;
+  line-height: 20px;
 }
 
-.readout-empty {
-  color: var(--faint);
+.readout-chip[data-kind] {
+  background: rgb(47 125 246 / 0.1);
+  box-shadow: none;
+  color: #1b63d8;
 }
 
 /* --- Docs: one calm reading surface --- */
@@ -1111,8 +1077,9 @@ kbd {
     animation: rise 600ms var(--ease-out-expo) 420ms backwards;
   }
 
+  /* After the hints, just before typing starts. */
   .readout {
-    animation: rise 600ms var(--ease-out-expo) 640ms backwards;
+    animation: rise 500ms var(--ease-out-expo) 1500ms backwards;
   }
 
   /* Only hide cards once JS is ready to show them again. */
@@ -1210,11 +1177,6 @@ kbd {
 
   .hero-lede {
     font-size: 16px;
-  }
-
-  .readout > div {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 2px;
   }
 
   .steps > li {

@@ -4,7 +4,6 @@ import {
 } from '@examples/coding-assistant'
 import { MessagePreview } from '@examples/parts'
 import {
-  getText,
   type ComposerApi,
   type ComposerMessage,
   type ComposerValue,
@@ -20,35 +19,23 @@ import {
   type RefObject,
 } from 'react'
 
+/** One line on what the app gets: the text, plus each token by kind. */
 function Readout({ value }: { value: ComposerValue }) {
-  const tokens = value.filter(
-    (segment): segment is TokenSegment => segment.type === 'token'
-  )
-  const text = getText(value)
+  const kinds = value
+    .filter((segment): segment is TokenSegment => segment.type === 'token')
+    .map(
+      (token) => token.item.type ?? (token.trigger === '/' ? 'command' : 'item')
+    )
   return (
-    <dl className="readout" aria-label="What your app receives">
-      <div>
-        <dt>getText()</dt>
-        <dd className="readout-text">
-          {text || <span className="readout-empty">empty</span>}
-        </dd>
-      </div>
-      <div>
-        <dt>tokens</dt>
-        <dd className="readout-tokens">
-          {tokens.length === 0 && <span className="readout-empty">none</span>}
-          {tokens.map((token, index) => (
-            <span key={index} className="readout-token">
-              <span>
-                {token.item.type ??
-                  (token.trigger === '/' ? 'command' : 'item')}
-              </span>
-              {token.item.id}
-            </span>
-          ))}
-        </dd>
-      </div>
-    </dl>
+    <p className="readout">
+      <span className="readout-label">Your app receives</span>
+      <span className="readout-chip">text</span>
+      {kinds.map((kind, index) => (
+        <span key={index} className="readout-chip" data-kind={kind}>
+          {kind}
+        </span>
+      ))}
+    </p>
   )
 }
 
