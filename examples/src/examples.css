@@ -15,40 +15,93 @@
 }
 
 .example-select {
-  position: relative;
   display: inline-flex;
   align-items: center;
-  color: var(--bricka-muted);
-}
-
-.example-select select {
-  appearance: none;
+  gap: 6px;
   height: 32px;
-  padding: 0 24px 0 10px;
+  padding: 0 10px;
   border: 0;
   border-radius: 999px;
   background: none;
-  color: inherit;
+  color: var(--bricka-muted);
   font: inherit;
   font-size: 13px;
   font-weight: 500;
   cursor: pointer;
+  transition:
+    background-color 120ms ease,
+    color 120ms ease,
+    scale 120ms ease;
 }
 
-.example-select select:hover {
-  background: var(--bricka-hover);
+.example-select:active {
+  scale: 0.96;
+}
+
+@media (hover: hover) {
+  .example-select:hover {
+    background: var(--bricka-hover);
+    color: var(--bricka-fg);
+  }
+}
+
+.example-select[data-open] {
+  background: var(--bricka-selected);
   color: var(--bricka-fg);
 }
 
-.example-select select:focus-visible {
+.example-select:focus-visible {
   outline: 2px solid var(--bricka-accent);
-  outline-offset: 1px;
+  outline-offset: 2px;
 }
 
 .example-select svg {
-  position: absolute;
-  right: 10px;
-  pointer-events: none;
+  transition: rotate 160ms ease;
+}
+
+.example-select[data-open] svg {
+  rotate: 180deg;
+}
+
+/* The picker borrows the suggestion menu's surface and rows. */
+.example-picker {
+  outline: none;
+}
+
+.example-picker-option {
+  padding-left: 10px;
+  min-height: 44px;
+}
+
+.example-picker-text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.3;
+}
+
+.example-picker-description {
+  overflow: hidden;
+  color: var(--bricka-faint);
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.example-picker-check {
+  flex: none;
+  color: var(--bricka-accent);
+  opacity: 0;
+  scale: 0.6;
+  transition:
+    opacity 120ms ease,
+    scale 160ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+.example-picker-option[aria-selected='true'] .example-picker-check {
+  opacity: 1;
+  scale: 1;
 }
 
 .example-divider {

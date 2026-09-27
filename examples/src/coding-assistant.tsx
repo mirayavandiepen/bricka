@@ -167,7 +167,11 @@ const completions: Array<[RegExp, Array<string>]> = [
   [/\bcheck$/i, ['for regressions in']],
 ]
 
-const MODELS = ['Balanced', 'Fast', 'Thorough']
+const MODELS = [
+  { value: 'Balanced', description: 'Good for most tasks' },
+  { value: 'Fast', description: 'Quick, lighter answers' },
+  { value: 'Thorough', description: 'Slower, checks its work' },
+]
 
 export const CODING_EXAMPLE_VALUE: ComposerValue = [
   { type: 'text', text: 'Fix ' },
@@ -199,7 +203,7 @@ export function CodingAssistant({
   autoFocus?: boolean
   composerRef?: Ref<ComposerApi>
 }) {
-  const [model, setModel] = useState(MODELS[0])
+  const [model, setModel] = useState(MODELS[0].value)
   const [isSearchEnabled, setIsSearchEnabled] = useState(false)
 
   return (
@@ -234,7 +238,12 @@ export function CodingAssistant({
           <GlobeIcon />
         </ComposerAction>
         <span className="example-divider" aria-hidden />
-        <ModelSelect models={MODELS} value={model} onChange={setModel} />
+        <ModelSelect
+          label="Model"
+          options={MODELS}
+          value={model}
+          onChange={setModel}
+        />
         <ComposerSubmit />
       </ComposerFooter>
     </Composer>

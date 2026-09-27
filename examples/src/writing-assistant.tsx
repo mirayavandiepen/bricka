@@ -131,14 +131,18 @@ function WordCount() {
   )
 }
 
-const TONES = ['Neutral', 'Friendly', 'Formal']
+const TONES = [
+  { value: 'Neutral', description: 'Plain and clear' },
+  { value: 'Friendly', description: 'Warm and relaxed' },
+  { value: 'Formal', description: 'Polished and precise' },
+]
 
 export function WritingAssistant({
   onSend,
 }: {
   onSend?: (message: ComposerMessage) => void
 }) {
-  const [tone, setTone] = useState(TONES[0])
+  const [tone, setTone] = useState(TONES[0].value)
 
   return (
     <Composer onSubmit={onSend}>
@@ -157,7 +161,12 @@ export function WritingAssistant({
         }}
       />
       <ComposerFooter>
-        <ModelSelect models={TONES} value={tone} onChange={setTone} />
+        <ModelSelect
+          label="Tone"
+          options={TONES}
+          value={tone}
+          onChange={setTone}
+        />
         <WordCount />
         <ComposerSubmit />
       </ComposerFooter>
