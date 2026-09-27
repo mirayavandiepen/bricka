@@ -242,3 +242,26 @@
 .bricka-option[data-type] .bricka-option-icon {
   color: rgb(var(--tint));
 }
+
+/* On dark surfaces the same hues need lifting to stay readable. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .bricka-token[data-type] {
+    background: rgb(var(--tint) / 0.2);
+    color: color-mix(in srgb, rgb(var(--tint)) 55%, white);
+  }
+
+  :root:not([data-theme='light'])
+    .bricka-option[data-type]
+    .bricka-option-icon {
+    color: color-mix(in srgb, rgb(var(--tint)) 65%, white);
+  }
+}
+
+[data-theme='dark'] .bricka-token[data-type] {
+  background: rgb(var(--tint) / 0.2);
+  color: color-mix(in srgb, rgb(var(--tint)) 55%, white);
+}
+
+[data-theme='dark'] .bricka-option[data-type] .bricka-option-icon {
+  color: color-mix(in srgb, rgb(var(--tint)) 65%, white);
+}
