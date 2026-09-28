@@ -57,6 +57,8 @@ export function Chat() {
 
 State is managed for you. Pass `value` and `onValueChange` when you want to own it.
 
+In Next.js and other server-rendered React apps, put `'use client'` at the top of the file that renders the composer, since it takes event handlers such as `onSubmit`.
+
 ## Features
 
 - **Inline context tokens** that sit in the sentence, with icons, tooltips, selection and two-step Backspace removal.

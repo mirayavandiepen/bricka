@@ -16,6 +16,15 @@
   ],
   "author": "Miraya van Diepen",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mirayatech/bricka.git",
+    "directory": "packages/react"
+  },
+  "homepage": "https://github.com/mirayatech/bricka#readme",
+  "bugs": {
+    "url": "https://github.com/mirayatech/bricka/issues"
+  },
   "type": "module",
   "sideEffects": [
     "*.css"
