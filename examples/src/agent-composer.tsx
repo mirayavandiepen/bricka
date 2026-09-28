@@ -9,7 +9,7 @@ import {
   type ComposerMessage,
   type ContextItem,
   type Trigger,
-} from '@inlay/react'
+} from '@bricka/react'
 import {
   AgentIcon,
   DatabaseIcon,

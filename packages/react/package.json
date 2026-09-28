@@ -1,5 +1,5 @@
 {
-  "name": "@inlay/react",
+  "name": "@bricka/react",
   "version": "0.1.0",
   "description": "A composable input for AI apps: inline context tokens, @ mentions, / commands, ghost-text autocomplete and attachments.",
   "keywords": [
@@ -16,6 +16,15 @@
   ],
   "author": "Miraya van Diepen",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mirayatech/bricka.git",
+    "directory": "packages/react"
+  },
+  "homepage": "https://github.com/mirayatech/bricka#readme",
+  "bugs": {
+    "url": "https://github.com/mirayatech/bricka/issues"
+  },
   "type": "module",
   "sideEffects": [
     "*.css"

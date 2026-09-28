@@ -41,7 +41,7 @@ export function renderComposer({
       )}
     </Composer>
   )
-  const editor = utils.container.querySelector<HTMLElement>('.inlay-input')!
+  const editor = utils.container.querySelector<HTMLElement>('.bricka-input')!
   return { ...utils, editor, api: () => ref.current! }
 }
 

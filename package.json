@@ -1,5 +1,5 @@
 {
-  "name": "inlay-workspace",
+  "name": "bricka-workspace",
   "private": true,
   "type": "module",
   "workspaces": [
@@ -8,11 +8,11 @@
     "docs"
   ],
   "scripts": {
-    "dev": "bun run --filter inlay-docs dev",
-    "dev:examples": "bun run --filter inlay-examples dev",
-    "build": "bun run --filter @inlay/react build",
-    "build:docs": "bun run --filter inlay-docs build",
-    "test": "bun run --filter @inlay/react test",
+    "dev": "bun run --filter bricka-docs dev",
+    "dev:examples": "bun run --filter bricka-examples dev",
+    "build": "bun run --filter @bricka/react build",
+    "build:docs": "bun run --filter bricka-docs build",
+    "test": "bun run --filter @bricka/react test",
     "typecheck": "tsc -p packages/react --noEmit && tsc -p examples --noEmit && tsc -p docs --noEmit",
     "lint": "eslint .",
     "format": "prettier --write ."

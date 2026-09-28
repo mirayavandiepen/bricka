@@ -1,4 +1,4 @@
-# Inlay
+# Bricka
 
 A composable React input for AI apps: people type naturally and pull files, people, tools and commands into the message as structured context.
 
@@ -11,11 +11,11 @@ In that sentence, `Composer.tsx`, `design-system` and `accessibility` are tokens
 ## Install
 
 ```bash
-npm install @inlay/react
+npm install @bricka/react
 ```
 
 ```ts
-import '@inlay/react/styles.css'
+import '@bricka/react/styles.css'
 ```
 
 React 18 or newer. No other runtime dependencies.
@@ -28,8 +28,8 @@ import {
   ComposerFooter,
   ComposerInput,
   ComposerSubmit,
-} from '@inlay/react'
-import '@inlay/react/styles.css'
+} from '@bricka/react'
+import '@bricka/react/styles.css'
 
 const mentions = {
   char: '@',
@@ -57,13 +57,15 @@ export function Chat() {
 
 State is managed for you. Pass `value` and `onValueChange` when you want to own it.
 
+In Next.js and other server-rendered React apps, put `'use client'` at the top of the file that renders the composer, since it takes event handlers such as `onSubmit`.
+
 ## Features
 
 - **Inline context tokens** that sit in the sentence, with icons, tooltips, selection and two-step Backspace removal.
 - **Triggers**: `@` mentions, `/` commands, or any character you choose, all sharing one menu system.
 - **Sync or async results** with fuzzy matching, groups, abort signals, debouncing and stale-result protection.
 - **Ghost-text autocomplete** with cycling, cancellation and streaming from any provider.
-- **Attachments** by paste, drop or picker. You handle storage; Inlay handles the interaction.
+- **Attachments** by paste, drop or picker. You handle storage; Bricka handles the interaction.
 - **Composable parts**: attachments, input, footer, actions and submit are separate and optional.
 - **Keyboard-first and accessible**: listbox semantics, live announcements, IME-safe, reduced motion.
 - **Themeable** through CSS custom properties with light and dark defaults, or fully headless.
@@ -154,7 +156,7 @@ const commands: Trigger = {
 </Composer>
 ```
 
-Theme with custom properties such as `--inlay-accent`, `--inlay-token-bg` and `--inlay-radius`. Every part takes `className` and exposes state through data attributes (`data-selected`, `data-active`, `data-dragging`, `data-type`, `data-trigger`). Replace the menu with your own through `useComposerMenu()`, and reach any state or action with `useComposer()`.
+Theme with custom properties such as `--bricka-accent`, `--bricka-token-bg` and `--bricka-radius`. Every part takes `className` and exposes state through data attributes (`data-selected`, `data-active`, `data-dragging`, `data-type`, `data-trigger`). Replace the menu with your own through `useComposerMenu()`, and reach any state or action with `useComposer()`.
 
 ## Keyboard
 
@@ -204,4 +206,4 @@ bun run build:docs
 
 ## License
 
-MIT © Miraya van Diepen. Inlay began as a fork of [fude](https://www.npmjs.com/package/@tigerabrodioss/fude) by Tiger Abrodi (MIT); see [LICENSE](LICENSE).
+MIT © Miraya van Diepen. Bricka began as a fork of [fude](https://www.npmjs.com/package/@tigerabrodioss/fude) by Tiger Abrodi (MIT); see [LICENSE](LICENSE).

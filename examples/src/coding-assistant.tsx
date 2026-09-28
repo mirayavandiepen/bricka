@@ -7,12 +7,13 @@ import {
   ComposerInput,
   ComposerSubmit,
   fuzzyFilter,
+  type ComposerApi,
   type ComposerMessage,
   type ComposerValue,
   type ContextItem,
   type Trigger,
-} from '@inlay/react'
-import { useState } from 'react'
+} from '@bricka/react'
+import { useState, type Ref } from 'react'
 import {
   BranchIcon,
   ChatIcon,
@@ -166,7 +167,11 @@ const completions: Array<[RegExp, Array<string>]> = [
   [/\bcheck$/i, ['for regressions in']],
 ]
 
-const MODELS = ['Balanced', 'Fast', 'Thorough']
+const MODELS = [
+  { value: 'Balanced', description: 'Good for most tasks' },
+  { value: 'Fast', description: 'Quick, lighter answers' },
+  { value: 'Thorough', description: 'Slower, checks its work' },
+]
 
 export const CODING_EXAMPLE_VALUE: ComposerValue = [
   { type: 'text', text: 'Fix ' },
@@ -190,17 +195,20 @@ export function CodingAssistant({
   onValueChange,
   defaultValue,
   autoFocus,
+  composerRef,
 }: {
   onSend?: (message: ComposerMessage) => void
   onValueChange?: (value: ComposerValue) => void
   defaultValue?: ComposerValue
   autoFocus?: boolean
+  composerRef?: Ref<ComposerApi>
 }) {
-  const [model, setModel] = useState(MODELS[0])
+  const [model, setModel] = useState(MODELS[0].value)
   const [isSearchEnabled, setIsSearchEnabled] = useState(false)
 
   return (
     <Composer
+      ref={composerRef}
       acceptFiles
       defaultValue={defaultValue}
       onSubmit={onSend}
@@ -230,7 +238,12 @@ export function CodingAssistant({
           <GlobeIcon />
         </ComposerAction>
         <span className="example-divider" aria-hidden />
-        <ModelSelect models={MODELS} value={model} onChange={setModel} />
+        <ModelSelect
+          label="Model"
+          options={MODELS}
+          value={model}
+          onChange={setModel}
+        />
         <ComposerSubmit />
       </ComposerFooter>
     </Composer>

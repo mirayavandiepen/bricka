@@ -48,7 +48,7 @@ function Highlight({ text, query }: { text: string; query: string }) {
     if (i === text.length || (run.length > 0 && isMarked !== isRunMarked)) {
       parts.push(
         isRunMarked ? (
-          <mark key={i} className="inlay-match">
+          <mark key={i} className="bricka-match">
             {run}
           </mark>
         ) : (
@@ -76,15 +76,15 @@ function DefaultItem({
   return (
     <>
       {icon && (
-        <span className="inlay-option-icon" aria-hidden>
+        <span className="bricka-option-icon" aria-hidden>
           {icon}
         </span>
       )}
-      <span className="inlay-option-label">
+      <span className="bricka-option-label">
         <Highlight text={item.label} query={query} />
       </span>
       {item.description && (
-        <span className="inlay-option-description">{item.description}</span>
+        <span className="bricka-option-description">{item.description}</span>
       )}
     </>
   )
@@ -137,6 +137,13 @@ export function ComposerMenu({ className, style }: ComposerMenuProps) {
   const { trigger, items, status, query, position } = menu
   if (status === 'idle' && items.length === 0) return null
 
+  // Ungrouped lists get the trigger's label as a heading, so a `/` menu
+  // reads as "Commands" the way grouped lists read as "Files".
+  const heading =
+    items.length > 0 && items.every((item) => !item.group)
+      ? trigger.label
+      : undefined
+
   let notice: ReactNode = null
   if (items.length === 0) {
     if (status === 'loading') notice = labels.loading
@@ -147,9 +154,10 @@ export function ComposerMenu({ className, style }: ComposerMenuProps) {
   return createPortal(
     <div
       ref={menuElementRef}
-      className={['inlay-menu', className].filter(Boolean).join(' ')}
+      className={['bricka-menu', className].filter(Boolean).join(' ')}
       data-placement={position.placement}
       data-status={status}
+      data-trigger={trigger.char}
       style={{
         ...theme,
         position: 'fixed',
@@ -164,15 +172,20 @@ export function ComposerMenu({ className, style }: ComposerMenuProps) {
       onMouseDown={(event) => event.preventDefault()}
     >
       {status === 'loading' && items.length > 0 && (
-        <div className="inlay-menu-progress" aria-hidden />
+        <div className="bricka-menu-progress" aria-hidden />
       )}
       <div
         id={listboxId}
         role="listbox"
         aria-label={trigger.label ?? 'Suggestions'}
         aria-busy={status === 'loading' || undefined}
-        className="inlay-menu-list"
+        className="bricka-menu-list"
       >
+        {heading && (
+          <div className="bricka-menu-group-label" aria-hidden>
+            {heading}
+          </div>
+        )}
         {toSections(items).map((section) => {
           const labelId = `${listboxId}-group-${section.start}`
           const options = section.items.map((item, offset) => {
@@ -187,7 +200,7 @@ export function ComposerMenu({ className, style }: ComposerMenuProps) {
                 aria-disabled={item.disabled || undefined}
                 data-active={isActive || undefined}
                 data-type={item.type}
-                className="inlay-option"
+                className="bricka-option"
                 onPointerMove={() => setActive(index)}
                 onClick={() => select(index)}
               >
@@ -209,12 +222,12 @@ export function ComposerMenu({ className, style }: ComposerMenuProps) {
               key={labelId}
               role="group"
               aria-labelledby={labelId}
-              className="inlay-menu-group"
+              className="bricka-menu-group"
             >
               <div
                 id={labelId}
                 role="presentation"
-                className="inlay-menu-group-label"
+                className="bricka-menu-group-label"
               >
                 {section.group}
               </div>
@@ -224,7 +237,7 @@ export function ComposerMenu({ className, style }: ComposerMenuProps) {
         })}
       </div>
       {notice !== null && (
-        <div className="inlay-menu-notice" data-status={status}>
+        <div className="bricka-menu-notice" data-status={status}>
           {notice}
         </div>
       )}

@@ -15,98 +15,179 @@
 }
 
 .example-select {
-  position: relative;
   display: inline-flex;
   align-items: center;
-  color: var(--inlay-muted);
-}
-
-.example-select select {
-  appearance: none;
-  height: 28px;
-  padding: 0 22px 0 8px;
+  gap: 6px;
+  height: 32px;
+  padding: 0 10px;
   border: 0;
-  border-radius: 7px;
+  border-radius: 999px;
   background: none;
-  color: inherit;
+  color: var(--bricka-muted);
   font: inherit;
   font-size: 13px;
+  font-weight: 500;
   cursor: pointer;
+  transition:
+    background-color 120ms ease,
+    color 120ms ease,
+    scale 120ms ease;
 }
 
-.example-select select:hover {
-  background: var(--inlay-hover);
-  color: var(--inlay-fg);
+.example-select:active {
+  scale: 0.96;
 }
 
-.example-select select:focus-visible {
-  outline: 2px solid var(--inlay-accent);
-  outline-offset: 1px;
+@media (hover: hover) {
+  .example-select:hover {
+    background: var(--bricka-hover);
+    color: var(--bricka-fg);
+  }
+}
+
+.example-select[data-open] {
+  background: var(--bricka-selected);
+  color: var(--bricka-fg);
+}
+
+.example-select:focus-visible {
+  outline: 2px solid var(--bricka-accent);
+  outline-offset: 2px;
 }
 
 .example-select svg {
-  position: absolute;
-  right: 8px;
-  pointer-events: none;
+  transition: rotate 160ms ease;
+}
+
+.example-select[data-open] svg {
+  rotate: 180deg;
+}
+
+/* The picker borrows the suggestion menu's surface and rows. */
+.example-picker {
+  outline: none;
+}
+
+.example-picker-option {
+  padding-left: 10px;
+  min-height: 44px;
+}
+
+.example-picker-text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.3;
+}
+
+.example-picker-description {
+  overflow: hidden;
+  color: var(--bricka-faint);
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.example-picker-check {
+  flex: none;
+  color: var(--bricka-accent);
+  opacity: 0;
+  scale: 0.6;
+  transition:
+    opacity 120ms ease,
+    scale 160ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+.example-picker-option[aria-selected='true'] .example-picker-check {
+  opacity: 1;
+  scale: 1;
 }
 
 .example-divider {
   width: 1px;
   height: 16px;
   margin: 0 4px;
-  background: var(--inlay-border);
+  background: var(--bricka-border);
 }
 
 .example-status {
   margin-inline-start: auto;
-  margin-inline-end: 6px;
-  color: var(--inlay-faint);
-  font-size: 12px;
+  margin-inline-end: 10px;
+  color: var(--bricka-faint);
+  font-size: 12.5px;
   font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  transition: opacity 160ms ease-out;
+}
+
+.example-status[data-empty] {
+  opacity: 0;
+}
+
+/* The count already pushes Send to the end. */
+.example-status + .bricka-submit {
+  margin-inline-start: 0;
 }
 
 .example-preview-empty {
   margin: 0;
-  color: var(--inlay-faint);
+  color: var(--bricka-faint);
   font-size: 13px;
 }
 
 .example-preview {
   overflow: hidden;
-  border: 1px solid var(--inlay-border);
-  border-radius: var(--inlay-radius);
+  border-radius: var(--bricka-radius);
+  background: var(--bricka-bg);
+  box-shadow: var(--bricka-shadow);
   font-size: 13px;
 }
 
 .example-preview-tabs {
   display: flex;
   gap: 2px;
-  padding: 4px;
-  border-bottom: 1px solid var(--inlay-border);
+  width: fit-content;
+  margin: 8px 8px 0;
+  padding: 3px;
+  /* 8px from the preview's corner, then 3px to the buttons. */
+  border-radius: calc(var(--bricka-radius) - 8px);
+  background: var(--bricka-hover);
 }
 
 .example-preview-tabs button {
-  height: 24px;
-  padding: 0 8px;
+  height: 26px;
+  padding: 0 12px;
   border: 0;
-  border-radius: 5px;
+  border-radius: calc(var(--bricka-radius) - 11px);
   background: none;
-  color: var(--inlay-muted);
+  color: var(--bricka-muted);
   font: inherit;
   font-size: 12px;
+  font-weight: 500;
   cursor: pointer;
+  transition:
+    background-color 120ms ease,
+    color 120ms ease;
+}
+
+.example-preview-tabs button:hover {
+  color: var(--bricka-fg);
 }
 
 .example-preview-tabs button[aria-selected='true'] {
-  background: var(--inlay-selected);
-  color: var(--inlay-fg);
+  background: var(--bricka-bg);
+  color: var(--bricka-fg);
+  box-shadow:
+    0 0 0 1px rgb(23 23 23 / 0.05),
+    0 1px 3px rgb(23 23 23 / 0.1);
 }
 
 .example-preview-body {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  padding: 12px;
+  padding: 14px 16px 16px;
 }
 
 .example-preview-text {
@@ -117,13 +198,13 @@
 
 .example-preview-meta {
   margin: 0;
-  color: var(--inlay-muted);
+  color: var(--bricka-muted);
   font-size: 12px;
 }
 
 .example-preview-plain {
-  color: var(--inlay-muted);
-  font-family: var(--inlay-font-mono);
+  color: var(--bricka-muted);
+  font-family: var(--bricka-font-mono);
   font-size: 12px;
   white-space: pre-wrap;
   word-break: break-word;
@@ -132,25 +213,109 @@
 .example-preview-json {
   max-height: 240px;
   margin: 0;
-  padding: 12px;
+  padding: 14px 16px 16px;
   overflow: auto;
-  color: var(--inlay-muted);
-  font-family: var(--inlay-font-mono);
+  color: var(--bricka-muted);
+  font-family: var(--bricka-font-mono);
   font-size: 12px;
   line-height: 1.5;
 }
 
 .example-chip {
-  padding: 1px 5px;
-  border-radius: 4px;
-  background: var(--inlay-token-bg);
-  color: var(--inlay-token-fg);
-  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--bricka-token-bg);
+  color: var(--bricka-token-fg);
+  font-weight: 600;
 }
 
 .example-chip[data-trigger='/'] {
-  background: var(--inlay-selected);
-  color: var(--inlay-fg);
-  font-family: var(--inlay-font-mono);
+  background: var(--bricka-selected);
+  color: var(--bricka-fg);
+  font-family: var(--bricka-font-mono);
   font-size: 0.9em;
+}
+
+/* Each kind of context gets its own colour, like crayons in a box. */
+
+:is(.bricka-token, .bricka-option)[data-type] {
+  --tint: 47 125 246;
+}
+
+:is(.bricka-token, .bricka-option):is(
+  [data-type='person'],
+  [data-type='agent']
+) {
+  --tint: 226 61 128;
+}
+
+:is(.bricka-token, .bricka-option):is(
+  [data-type='tool'],
+  [data-type='branch']
+) {
+  --tint: 22 150 88;
+}
+
+:is(.bricka-token, .bricka-option):is([data-type='issue'], [data-type='url']) {
+  --tint: 230 96 14;
+}
+
+:is(.bricka-token, .bricka-option):is(
+  [data-type='document'],
+  [data-type='article']
+) {
+  --tint: 124 77 232;
+}
+
+:is(.bricka-token, .bricka-option):is(
+  [data-type='dataset'],
+  [data-type='source']
+) {
+  --tint: 13 140 128;
+}
+
+:is(.bricka-token, .bricka-option)[data-type='folder'] {
+  --tint: 190 128 0;
+}
+
+.bricka-token[data-type] {
+  background: rgb(var(--tint) / 0.13);
+  color: rgb(var(--tint));
+}
+
+.bricka-token[data-type]:hover {
+  background: rgb(var(--tint) / 0.19);
+}
+
+.bricka-token[data-type][data-selected] {
+  background: rgb(var(--tint) / 0.24);
+  box-shadow: 0 0 0 1.5px rgb(var(--tint) / 0.6);
+}
+
+.bricka-option[data-type] .bricka-option-icon {
+  background: rgb(var(--tint) / 0.1);
+  color: rgb(var(--tint));
+}
+
+/* On dark surfaces the same hues need lifting to stay readable. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .bricka-token[data-type] {
+    background: rgb(var(--tint) / 0.2);
+    color: color-mix(in srgb, rgb(var(--tint)) 55%, white);
+  }
+
+  :root:not([data-theme='light'])
+    .bricka-option[data-type]
+    .bricka-option-icon {
+    color: color-mix(in srgb, rgb(var(--tint)) 65%, white);
+  }
+}
+
+[data-theme='dark'] .bricka-token[data-type] {
+  background: rgb(var(--tint) / 0.2);
+  color: color-mix(in srgb, rgb(var(--tint)) 55%, white);
+}
+
+[data-theme='dark'] .bricka-option[data-type] .bricka-option-icon {
+  color: color-mix(in srgb, rgb(var(--tint)) 65%, white);
 }

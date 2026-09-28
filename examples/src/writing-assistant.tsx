@@ -7,7 +7,7 @@ import {
   useComposer,
   type ComposerMessage,
   type Trigger,
-} from '@inlay/react'
+} from '@bricka/react'
 import { useState } from 'react'
 import {
   ArticleIcon,
@@ -123,21 +123,26 @@ const drafts: Array<[RegExp, Array<string>]> = [
 function WordCount() {
   const { value } = useComposer()
   const words = getText(value).trim().split(/\s+/).filter(Boolean).length
+  // Hidden until there's something to count; fades in beside Send.
   return (
-    <span className="example-status">
+    <span className="example-status" data-empty={words === 0 || undefined}>
       {words === 1 ? '1 word' : `${words} words`}
     </span>
   )
 }
 
-const TONES = ['Neutral', 'Friendly', 'Formal']
+const TONES = [
+  { value: 'Neutral', description: 'Plain and clear' },
+  { value: 'Friendly', description: 'Warm and relaxed' },
+  { value: 'Formal', description: 'Polished and precise' },
+]
 
 export function WritingAssistant({
   onSend,
 }: {
   onSend?: (message: ComposerMessage) => void
 }) {
-  const [tone, setTone] = useState(TONES[0])
+  const [tone, setTone] = useState(TONES[0].value)
 
   return (
     <Composer onSubmit={onSend}>
@@ -156,7 +161,12 @@ export function WritingAssistant({
         }}
       />
       <ComposerFooter>
-        <ModelSelect models={TONES} value={tone} onChange={setTone} />
+        <ModelSelect
+          label="Tone"
+          options={TONES}
+          value={tone}
+          onChange={setTone}
+        />
         <WordCount />
         <ComposerSubmit />
       </ComposerFooter>

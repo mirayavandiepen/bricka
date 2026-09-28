@@ -26,10 +26,11 @@ export function CloseIcon(props: SVGProps<SVGSVGElement>) {
   )
 }
 
+/** Drawn on a 24 grid so it fills the box like the other icons do. */
 export function PaperclipIcon(props: SVGProps<SVGSVGElement>) {
   return (
-    <Icon {...props}>
-      <path d="M13 7.5l-5.2 5.2a3 3 0 01-4.3-4.2L9 3a2 2 0 012.9 2.8l-5.4 5.4a1 1 0 01-1.4-1.4L10 5" />
+    <Icon viewBox="0 0 24 24" strokeWidth="2.1" {...props}>
+      <path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l8.57-8.57A4 4 0 1118 8.84l-8.59 8.57a2 2 0 01-2.83-2.83l8.49-8.48" />
     </Icon>
   )
 }

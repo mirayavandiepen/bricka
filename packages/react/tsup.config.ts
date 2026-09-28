@@ -8,6 +8,8 @@ export default defineConfig({
   sourcemap: true,
   clean: true,
   external: ['react', 'react-dom'],
+  // Next.js renders on the server first; this marks the components as client-only.
+  banner: { js: "'use client'" },
   async onSuccess() {
     await copyFile('src/styles.css', 'dist/styles.css')
   },

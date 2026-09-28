@@ -1,12 +1,12 @@
 {
-  "name": "inlay-examples",
+  "name": "bricka-examples",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite"
   },
   "dependencies": {
-    "@inlay/react": "workspace:*",
+    "@bricka/react": "workspace:*",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },

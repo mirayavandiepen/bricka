@@ -95,14 +95,14 @@ describe('filtering', () => {
     expect(options().map((o) => o.textContent)).toEqual([
       'Composer.tsxsrc/components',
     ])
-    expect(document.querySelector('.inlay-match')?.textContent).toBe('Comp')
+    expect(document.querySelector('.bricka-match')?.textContent).toBe('Comp')
   })
 
   it('shows an empty state', () => {
     const { editor } = setup()
     type(editor, '@zzz')
     expect(options()).toHaveLength(0)
-    expect(document.querySelector('.inlay-menu-notice')?.textContent).toBe(
+    expect(document.querySelector('.bricka-menu-notice')?.textContent).toBe(
       'No results'
     )
   })
@@ -148,9 +148,9 @@ describe('async loading', () => {
       signal: expect.any(AbortSignal),
     })
     expect(
-      document.querySelector('.inlay-menu')?.getAttribute('data-status')
+      document.querySelector('.bricka-menu')?.getAttribute('data-status')
     ).toBe('loading')
-    expect(document.querySelector('.inlay-menu-notice')?.textContent).toBe(
+    expect(document.querySelector('.bricka-menu-notice')?.textContent).toBe(
       'Loading…'
     )
     await act(async () => request.resolve(files))
@@ -182,7 +182,7 @@ describe('async loading', () => {
     type(editor, '@')
     type(editor, 'r')
     expect(options()).toHaveLength(3)
-    expect(document.querySelector('.inlay-menu-progress')).not.toBeNull()
+    expect(document.querySelector('.bricka-menu-progress')).not.toBeNull()
     await act(async () => pending.resolve([files[2]]))
     expect(options()).toHaveLength(1)
   })
@@ -209,7 +209,7 @@ describe('async loading', () => {
     type(editor, '@x')
     await flush()
     expect(onError).toHaveBeenCalledWith(failure, 'trigger')
-    expect(document.querySelector('.inlay-menu-notice')?.textContent).toBe(
+    expect(document.querySelector('.bricka-menu-notice')?.textContent).toBe(
       'Couldn’t load results'
     )
     type(editor, 'y')
@@ -344,7 +344,7 @@ describe('mouse and touch', () => {
     type(editor, '@')
     fireEvent.pointerMove(options()[2])
     expect(options()[2].hasAttribute('data-active')).toBe(true)
-    const menu = document.querySelector('.inlay-menu')!
+    const menu = document.querySelector('.bricka-menu')!
     const isDefaultAllowed = fireEvent.mouseDown(menu)
     expect(isDefaultAllowed).toBe(false)
     fireEvent.click(options()[2])

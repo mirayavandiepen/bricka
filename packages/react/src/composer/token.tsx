@@ -35,7 +35,7 @@ function Tooltip({
 }) {
   const [position, setPosition] = useState<TooltipPosition | null>(null)
   const [theme] = useState(() =>
-    readThemeVariables(anchor.closest<HTMLElement>('.inlay-composer'))
+    readThemeVariables(anchor.closest<HTMLElement>('.bricka-composer'))
   )
 
   useLayoutEffect(() => {
@@ -60,7 +60,7 @@ function Tooltip({
     transform: `translate(-50%, ${position.isBelow ? '0' : '-100%'})`,
   }
   return createPortal(
-    <div className="inlay-tooltip" role="tooltip" style={style}>
+    <div className="bricka-tooltip" role="tooltip" style={style}>
       {children}
     </div>,
     document.body
@@ -99,7 +99,7 @@ export const TokenView = memo(function TokenView({
   return (
     <span
       ref={rootRef}
-      className="inlay-token"
+      className="bricka-token"
       data-selected={isSelected || undefined}
       data-type={item.type}
       data-trigger={char}
@@ -114,10 +114,10 @@ export const TokenView = memo(function TokenView({
         trigger.renderToken(item)
       ) : (
         <>
-          <span className="inlay-token-icon" aria-hidden>
+          <span className="bricka-token-icon" aria-hidden>
             {isRemoveVisible ? (
               <span
-                className="inlay-token-remove"
+                className="bricka-token-remove"
                 title={`${removeLabel} ${item.label}`}
                 onMouseDown={(event) => {
                   event.preventDefault()
@@ -128,10 +128,10 @@ export const TokenView = memo(function TokenView({
                 <CloseIcon width={12} height={12} />
               </span>
             ) : (
-              (icon ?? <span className="inlay-token-char">{char}</span>)
+              (icon ?? <span className="bricka-token-char">{char}</span>)
             )}
           </span>
-          <span className="inlay-token-label">{item.label}</span>
+          <span className="bricka-token-label">{item.label}</span>
         </>
       )}
       {shouldShowTooltip && rootRef.current && (
