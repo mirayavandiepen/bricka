@@ -11,11 +11,11 @@ export default defineConfig({
     // Build the docs against the library source so they never drift.
     alias: [
       {
-        find: /^@bricka\/react$/,
+        find: /^@mirayavandiepen\/bricka$/,
         replacement: path('../packages/react/src/index.ts'),
       },
       {
-        find: /^@bricka\/react\/styles\.css$/,
+        find: /^@mirayavandiepen\/bricka\/styles\.css$/,
         replacement: path('../packages/react/src/styles.css'),
       },
       { find: /^@examples\//, replacement: path('../examples/src/') },

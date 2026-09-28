@@ -2,7 +2,7 @@ import { AgentComposer } from '@examples/agent-composer'
 import { CodingAssistant } from '@examples/coding-assistant'
 import { MessagePreview } from '@examples/parts'
 import { WritingAssistant } from '@examples/writing-assistant'
-import type { ComposerMessage } from '@bricka/react'
+import type { ComposerMessage } from '@mirayavandiepen/bricka'
 import { useState, type ReactNode } from 'react'
 import { ApiReference } from './api'
 import { Code, CopyButton } from './code'
@@ -10,7 +10,7 @@ import { Section } from './section'
 import { Facts, KeyGrid, Note, Steps, Topics } from './ui'
 
 function GetStarted() {
-  const command = 'npm install @bricka/react'
+  const command = 'npm install @mirayavandiepen/bricka'
   return (
     <Section
       id="get-started"
@@ -40,8 +40,8 @@ function GetStarted() {
                   Here, typing <kbd>@</kbd> lists files and people.
                 </p>
                 <Code title="chat.tsx">{`
-import { Composer, ComposerFooter, ComposerInput, ComposerSubmit } from '@bricka/react'
-import '@bricka/react/styles.css'
+import { Composer, ComposerFooter, ComposerInput, ComposerSubmit } from '@mirayavandiepen/bricka'
+import '@mirayavandiepen/bricka/styles.css'
 
 const mentions = {
   char: '@',
@@ -130,7 +130,7 @@ function ComposerDocs() {
   { type: 'token', trigger: '/', item: { id: 'a11y', label: 'accessibility' } },
 ]`}</Code>
                 <Code language="ts" title="helpers">{`
-import { getText, getTokens, serialize } from '@bricka/react'
+import { getText, getTokens, serialize } from '@mirayavandiepen/bricka'
 
 getText(value)       // 'Fix @Composer.tsx and check /accessibility'
 getTokens(value, '@') // [{ id: 'src/Composer.tsx', ... }]

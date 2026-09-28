@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@fontsource-variable/geist-mono": "^5.2.0",
-    "@bricka/react": "workspace:*",
+    "@mirayavandiepen/bricka": "workspace:*",
     "lucide-react": "^1.48.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

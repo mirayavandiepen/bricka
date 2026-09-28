@@ -17,7 +17,7 @@
     "docs": {
       "name": "bricka-docs",
       "dependencies": {
-        "@bricka/react": "workspace:*",
+        "@mirayavandiepen/bricka": "workspace:*",
         "@fontsource-variable/geist-mono": "^5.2.0",
         "lucide-react": "^1.48.0",
         "react": "^19.0.0",
@@ -35,7 +35,7 @@
     "examples": {
       "name": "bricka-examples",
       "dependencies": {
-        "@bricka/react": "workspace:*",
+        "@mirayavandiepen/bricka": "workspace:*",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
       },
@@ -48,7 +48,7 @@
       },
     },
     "packages/react": {
-      "name": "@bricka/react",
+      "name": "@mirayavandiepen/bricka",
       "version": "0.1.0",
       "devDependencies": {
         "@testing-library/react": "^16.3.2",
@@ -108,7 +108,7 @@
 
     "@babel/types": ["@babel/types@7.29.8", "", { "dependencies": { "@babel/helper-string-parser": "^7.29.7", "@babel/helper-validator-identifier": "^7.29.7" } }, "sha512-Vj1jF3cPfxg7OAfoI7QnVKLoILlm2JF9pnVHrX8qx7AHMiYWT+NDAA7jChlNgRS4WTLc/fD1lXLmPixluj+3Gg=="],
 
-    "@bricka/react": ["@bricka/react@workspace:packages/react"],
+    "@mirayavandiepen/bricka": ["@mirayavandiepen/bricka@workspace:packages/react"],
 
     "@esbuild/aix-ppc64": ["@esbuild/aix-ppc64@0.27.7", "", { "os": "aix", "cpu": "ppc64" }, "sha512-EKX3Qwmhz1eMdEJokhALr0YiD0lhQNwDqkPYyPhiSwKrh7/4KRjQc04sZ8db+5DVVnZ1LmbNDI1uAMPEUBnQPg=="],
 

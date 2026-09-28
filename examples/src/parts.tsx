@@ -1,4 +1,8 @@
-import { serialize, type ComposerMessage, type Segment } from '@bricka/react'
+import {
+  serialize,
+  type ComposerMessage,
+  type Segment,
+} from '@mirayavandiepen/bricka'
 import {
   useEffect,
   useId,

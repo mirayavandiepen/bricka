@@ -1,4 +1,4 @@
-import type { ComposerMessage } from '@bricka/react'
+import type { ComposerMessage } from '@mirayavandiepen/bricka'
 import { useEffect, useState, type ComponentType, type ReactNode } from 'react'
 import { AgentComposer } from './agent-composer'
 import { CodingAssistant } from './coding-assistant'

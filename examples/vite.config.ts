@@ -10,9 +10,9 @@ export default defineConfig({
   resolve: {
     // Use the library source directly for instant feedback while developing.
     alias: [
-      { find: /^@bricka\/react$/, replacement: source('index.ts') },
+      { find: /^@mirayavandiepen\/bricka$/, replacement: source('index.ts') },
       {
-        find: /^@bricka\/react\/styles\.css$/,
+        find: /^@mirayavandiepen\/bricka\/styles\.css$/,
         replacement: source('styles.css'),
       },
     ],

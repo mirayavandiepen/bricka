@@ -9,7 +9,7 @@ import {
   type ComposerMessage,
   type ContextItem,
   type Trigger,
-} from '@bricka/react'
+} from '@mirayavandiepen/bricka'
 import {
   AgentIcon,
   DatabaseIcon,

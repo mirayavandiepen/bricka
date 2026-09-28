@@ -8,7 +8,7 @@ import {
   type ComposerMessage,
   type ComposerValue,
   type TokenSegment,
-} from '@bricka/react'
+} from '@mirayavandiepen/bricka'
 import { Delete } from 'lucide-react'
 import {
   useEffect,
@@ -230,7 +230,7 @@ export function Hero() {
 
   return (
     <section className="hero" id="introduction" aria-labelledby="hero-title">
-      <p className="hero-tag">@bricka/react · v0.1</p>
+      <p className="hero-tag">@mirayavandiepen/bricka · v0.1</p>
       <h1 id="hero-title">
         {['Type it.', 'Tag it.', 'Send it.'].map((phrase, index) => (
           <span

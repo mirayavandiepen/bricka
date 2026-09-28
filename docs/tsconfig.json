@@ -9,7 +9,7 @@
     "noEmit": true,
     "types": ["vite/client"],
     "paths": {
-      "@bricka/react": ["../packages/react/src/index.ts"],
+      "@mirayavandiepen/bricka": ["../packages/react/src/index.ts"],
       "@examples/*": ["../examples/src/*"]
     }
   },

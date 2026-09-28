@@ -4,7 +4,7 @@ import { MONO, SANS } from '../fonts'
 import { CheckIcon, CopyIcon, Logo } from '../icons'
 import { display } from '../ui'
 
-const COMMAND = 'npm install @bricka/react'
+const COMMAND = 'npm install @mirayavandiepen/bricka'
 const TYPE_AT = 64
 const COPY_AT = TYPE_AT + COMMAND.length * 2 + 30
 

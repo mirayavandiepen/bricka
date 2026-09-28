@@ -12,7 +12,7 @@ import {
   type ComposerValue,
   type ContextItem,
   type Trigger,
-} from '@bricka/react'
+} from '@mirayavandiepen/bricka'
 import { useState, type Ref } from 'react'
 import {
   BranchIcon,

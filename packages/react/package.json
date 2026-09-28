@@ -1,5 +1,5 @@
 {
-  "name": "@bricka/react",
+  "name": "@mirayavandiepen/bricka",
   "version": "0.1.0",
   "description": "A composable input for AI apps: inline context tokens, @ mentions, / commands, ghost-text autocomplete and attachments.",
   "keywords": [

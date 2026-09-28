@@ -7,7 +7,7 @@ import {
   useComposer,
   type ComposerMessage,
   type Trigger,
-} from '@bricka/react'
+} from '@mirayavandiepen/bricka'
 import { useState } from 'react'
 import {
   ArticleIcon,

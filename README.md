@@ -33,7 +33,7 @@ React 18 or newer. No other runtime dependencies.
 ## Install
 
 ```bash
-npm install @bricka/react
+npm install @mirayavandiepen/bricka
 ```
 
 ## Quick start
@@ -44,8 +44,8 @@ import {
   ComposerFooter,
   ComposerInput,
   ComposerSubmit,
-} from '@bricka/react'
-import '@bricka/react/styles.css'
+} from '@mirayavandiepen/bricka'
+import '@mirayavandiepen/bricka/styles.css'
 
 const mentions = {
   char: '@',
