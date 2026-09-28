@@ -1,13 +1,13 @@
-<h1 align="center">Bricka</h1>
+<h1 align="center">Bricka — The input for AI apps</h1>
 
-<p align="center"><strong>The input for AI apps.</strong><br />A React composer where files, people, tools and commands live inside the message as real tokens.</p>
+<p align="center">   A React composer where files, people, tools and commands live inside the message as real tokens.</p>
 
 <p align="center">
-  <a href="https://github.com/mirayavandiepen/bricka/blob/main/.github/assets/bricka-4k.mp4">
-    <img src="https://raw.githubusercontent.com/mirayavandiepen/bricka/main/.github/assets/preview.gif" alt="Bricka demo: typing @ and / pulls files and commands into the message as tokens" width="960" />
-  </a>
-  <br />
-  <a href="https://github.com/mirayavandiepen/bricka/blob/main/.github/assets/bricka-4k.mp4"><strong>▶ Watch the full demo in 4K</strong></a>
+
+  
+
+https://github.com/user-attachments/assets/1f679fcd-bc1e-459a-877d-ca2a4f482446
+
 </p>
 
 ## What it does
