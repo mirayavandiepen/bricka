@@ -421,7 +421,6 @@ a {
 }
 
 .hero-lede {
-  max-width: 500px;
   margin: 14px 0 0;
   padding-inline-start: var(--text-inset);
   color: var(--text);
@@ -430,17 +429,14 @@ a {
   text-wrap: pretty;
 }
 
-.hero-name {
-  max-width: 500px;
-  margin: 10px 0 0;
-  padding-inline-start: var(--text-inset);
+.section .name-note {
+  margin: -12px 0 28px;
   color: var(--faint);
   font-size: 14px;
   line-height: 1.6;
-  text-wrap: pretty;
 }
 
-.hero-name-word {
+.name-note-word {
   color: var(--ink);
   font-weight: 600;
 }
@@ -1147,10 +1143,6 @@ kbd {
 
   .hero-lede {
     animation: rise 600ms var(--ease-out-expo) 420ms backwards;
-  }
-
-  .hero-name {
-    animation: rise 600ms var(--ease-out-expo) 480ms backwards;
   }
 
   /* After the hints, just before typing starts. */

@@ -6,6 +6,7 @@ import type { ComposerMessage } from '@mirayavandiepen/bricka'
 import { useState, type ReactNode } from 'react'
 import { ApiReference } from './api'
 import { Code, CopyButton } from './code'
+import { Pronunciation } from './pronunciation'
 import { Section } from './section'
 import { Facts, KeyGrid, Note, Steps, Topics } from './ui'
 
@@ -17,6 +18,18 @@ function GetStarted() {
       title="Get started"
       lede="Three steps. Works with React 18 and up, with no other dependencies."
     >
+      <p className="name-note">
+        <span lang="sv" className="name-note-word">
+          Bricka
+        </span>{' '}
+        is Swedish for a small tile or token, like a game piece or a name tag.
+        That is what your references become in the message. Pronounced{' '}
+        <span className="say-group">
+          <code aria-hidden>/ˈbrɪkːa/</code>
+          <Pronunciation />
+        </span>
+        , like &ldquo;BRICK-ah&rdquo;.
+      </p>
       <Steps
         items={[
           {

@@ -10,7 +10,6 @@ import {
   type TokenSegment,
 } from '@mirayavandiepen/bricka'
 import { Delete } from 'lucide-react'
-import { Pronunciation } from './pronunciation'
 import {
   useEffect,
   useRef,
@@ -246,18 +245,6 @@ export function Hero() {
       <p className="hero-lede">
         The input for AI apps. Pull files, people and tools right into the
         message.
-      </p>
-      <p className="hero-name">
-        <span lang="sv" className="hero-name-word">
-          Bricka
-        </span>{' '}
-        is Swedish for a small tile or token, like a game piece or a name tag.
-        That is what your references become in the message. Pronounced{' '}
-        <span className="say-group">
-          <code aria-hidden>/ˈbrɪkːa/</code>
-          <Pronunciation />
-        </span>
-        , like &ldquo;BRICK-ah&rdquo;.
       </p>
       <div className="hero-demo">
         <div className="stage" ref={stage}>
