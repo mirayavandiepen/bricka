@@ -206,4 +206,4 @@ bun run build:docs
 
 ## License
 
-MIT © Miraya van Diepen. Bricka began as a fork of [fude](https://www.npmjs.com/package/@tigerabrodioss/fude) by Tiger Abrodi (MIT); see [LICENSE](LICENSE).
+Created by Miraya van Diepen. MIT licensed; see [LICENSE](LICENSE).
