@@ -115,12 +115,12 @@ export function Composer({
   footer?: ReactNode
   style?: CSSProperties
 }) {
-  const ring =
-    drag > 0
-      ? `0 0 0 ${2 * drag}px ${t.accent}, 0 0 0 ${6 * drag}px ${t.focus}, `
-      : focus > 0
-        ? `0 0 0 1px ${alpha(t.accent, 50 * focus)}, 0 0 0 ${4 * focus}px ${alpha(t.focus, 100 * focus)}, `
-        : ''
+  let ring = ''
+  if (drag > 0) {
+    ring = `0 0 0 ${2 * drag}px ${t.accent}, 0 0 0 ${6 * drag}px ${t.focus}, `
+  } else if (focus > 0) {
+    ring = `0 0 0 1px ${alpha(t.accent, 50 * focus)}, 0 0 0 ${4 * focus}px ${alpha(t.focus, 100 * focus)}, `
+  }
   return (
     <div
       style={{
@@ -185,6 +185,7 @@ export function ActionButton({
   press?: number
   label?: string
 }) {
+  const pressedBg = press > 0 ? t.hover : 'transparent'
   return (
     <div
       style={{
@@ -199,7 +200,7 @@ export function ActionButton({
         fontSize: 13,
         fontWeight: 500,
         color: active > 0.5 ? t.tokenFg : t.muted,
-        background: active > 0 ? alpha(t.tokenBg, 100 * active) : press > 0 ? t.hover : 'transparent',
+        background: active > 0 ? alpha(t.tokenBg, 100 * active) : pressedBg,
         scale: String(1 - press * 0.08),
       }}
     >
@@ -326,6 +327,7 @@ export function Token({
   const isNeutral = isCommand && !tone
   const bg = isNeutral ? t.selected : c.bg
   const selectedRing = isNeutral ? t.borderStrong : alpha(c.solid, 55)
+  const selectedBg = isNeutral ? t.borderStrong : c.selected
   const shadows = [
     selected > 0 ? `0 0 0 ${selected}px ${selectedRing}` : null,
     age < 30 ? `0 0 0 ${2 + 4 * glow}px ${alpha(c.solid, 30 * (1 - glow))}` : null,
@@ -346,7 +348,7 @@ export function Token({
           padding: '0 8px 0 7px',
           margin: '0 1px',
           borderRadius: 999,
-          background: selected > 0 ? (isNeutral ? t.borderStrong : c.selected) : bg,
+          background: selected > 0 ? selectedBg : bg,
           color: isNeutral ? t.fg : c.fg,
           fontWeight: isNeutral ? 500 : 600,
           fontFamily: isCommand ? MONO : undefined,
@@ -393,7 +395,10 @@ export function Caret({
 }) {
   // iOS-style fade blink, held solid while keys are landing.
   const phase = (frame % 64) / 64
-  const blink = phase < 0.5 ? 1 : phase < 0.62 ? 1 - (phase - 0.5) / 0.12 : phase < 0.88 ? 0 : (phase - 0.88) / 0.12
+  const blink = interpolate(phase, [0, 0.5, 0.62, 0.88, 1], [1, 1, 0, 0, 1])
+  let opacity = blink
+  if (hidden) opacity = 0
+  else if (solid) opacity = 1
   return (
     <span
       style={{
@@ -405,7 +410,7 @@ export function Caret({
         verticalAlign: '-0.22em',
         borderRadius: 2,
         background: t.accent,
-        opacity: hidden ? 0 : solid ? 1 : blink,
+        opacity,
       }}
     />
   )
@@ -592,6 +597,8 @@ export function Menu({
           const row = item.row!
           if (item.v > 0.001) visibleIndex += 1
           const isActive = item.v > 0.5 && visibleIndex === activeIndex
+          const tileBg = isActive ? t.popoverBg : t.hover
+          const tileFg = isActive ? t.fg : t.muted
           return (
             <div
               key={row.id}
@@ -625,13 +632,9 @@ export function Menu({
                     width: 24,
                     height: 24,
                     borderRadius: 6,
-                    background: row.tone
-                      ? toneOf(t, row.tone).bg
-                      : isActive
-                        ? t.popoverBg
-                        : t.hover,
+                    background: row.tone ? toneOf(t, row.tone).bg : tileBg,
                     boxShadow: isActive ? `0 0 0 1px ${t.border}, 0 1px 2px rgb(0 0 0 / 0.06)` : 'none',
-                    color: row.tone ? toneOf(t, row.tone).fg : isActive ? t.fg : t.muted,
+                    color: row.tone ? toneOf(t, row.tone).fg : tileFg,
                   }}
                 >
                   {row.icon}
@@ -705,6 +708,7 @@ export function Keycap({
   light?: boolean
 }) {
   const face = light ? ['#ffffff', '#f1f1f4'] : ['#2c2c31', '#1e1e22']
+  const ink = light ? '#1d1d1f' : '#ededef'
   return (
     <div
       style={{
@@ -718,7 +722,7 @@ export function Keycap({
         fontFamily: SANS,
         fontSize: size * 0.4,
         fontWeight: 600,
-        color: lit > 0.5 ? '#ffffff' : light ? '#1d1d1f' : '#ededef',
+        color: lit > 0.5 ? '#ffffff' : ink,
         background: lit > 0 ? `color-mix(in srgb, #007aff ${100 * lit}%, ${face[0]})` : face[0],
         boxShadow: [
           `inset 0 1px 0 rgb(255 255 255 / ${0.12 + 0.1 * lit})`,

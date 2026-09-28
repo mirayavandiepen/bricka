@@ -15,7 +15,8 @@ export function Intro() {
 
   // The caret blinks alone, then the token springs out to its left.
   const pill = sp(f, 36, { damping: 12, stiffness: 150, mass: 0.9 })
-  const blink = f < 36 ? (Math.floor(f / 14) % 2 === 0 ? 1 : 0.1) : 1
+  const isBlinkOn = f >= 36 || Math.floor(f / 14) % 2 === 0
+  const blink = isBlinkOn ? 1 : 0.1
   const move = sp(f, 96, SMOOTH)
   const exit = range(f, durationInFrames - 22, durationInFrames)
 

@@ -27,12 +27,12 @@ export type Step =
 export function play(frame: number, steps: Array<Step>, t: Theme) {
   const nodes: Array<ReactNode> = []
   let lastKey = -Infinity
-  let done = true
+  let isDone = true
 
   for (let i = 0; i < steps.length; i++) {
     const step = steps[i]
     if (frame < step.at) {
-      done = false
+      isDone = false
       break
     }
     if (step.kind === 'type') {
@@ -41,7 +41,7 @@ export function play(frame: number, steps: Array<Step>, t: Theme) {
       nodes.push(<span key={i}>{shown}</span>)
       lastKey = Math.max(lastKey, step.at + (shown.length - 1) * speed)
       if (shown.length < step.text.length) {
-        done = false
+        isDone = false
         break
       }
       continue
@@ -89,7 +89,7 @@ export function play(frame: number, steps: Array<Step>, t: Theme) {
         </span>
       )
       lastKey = Math.max(lastKey, step.at + typedQuery.length * speed)
-      done = false
+      isDone = false
       break
     }
     nodes.push(
@@ -101,5 +101,5 @@ export function play(frame: number, steps: Array<Step>, t: Theme) {
     lastKey = Math.max(lastKey, step.enterAt)
   }
 
-  return { nodes, typing: frame - lastKey < 10, done, isEmpty: nodes.length === 0 }
+  return { nodes, isTyping: frame - lastKey < 10, isDone, isEmpty: nodes.length === 0 }
 }

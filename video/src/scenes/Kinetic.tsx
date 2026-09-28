@@ -43,7 +43,7 @@ export function Kinetic() {
   const sendPop = sp(f, starts[2] + 12, POP)
   const shoot = range(f, starts[2] + 36, starts[2] + 52)
   const press = f >= starts[2] + 32 && f < starts[2] + 40 ? 1 - Math.abs(f - (starts[2] + 36)) / 4 : 0
-  const caretOn = Math.floor(f / 16) % 2 === 0
+  const isCaretOn = Math.floor(f / 16) % 2 === 0
 
   return (
     <AbsoluteFill>
@@ -57,7 +57,7 @@ export function Kinetic() {
               height: 220,
               borderRadius: 8,
               background: '#2f7df6',
-              opacity: caretOn ? 1 : 0.2,
+              opacity: isCaretOn ? 1 : 0.2,
               marginLeft: -20,
             }}
           />

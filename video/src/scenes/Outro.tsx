@@ -15,12 +15,12 @@ export function Outro() {
   const logo = sp(f, 4, POP)
   const pill = sp(f, 48, { damping: 18, stiffness: 140 })
   const text = typed(f, TYPE_AT, COMMAND, 2)
-  const copied = f >= COPY_AT + 4
+  const isCopied = f >= COPY_AT + 4
   const press = f >= COPY_AT && f < COPY_AT + 12 ? 1 - Math.abs(f - (COPY_AT + 4)) / 8 : 0
   const check = sp(f, COPY_AT + 4, POP)
   const tip = sp(f, COPY_AT + 6, SNAP) * (1 - range(f, COPY_AT + 60, COPY_AT + 72))
+  const isCaretOn = f < COPY_AT && (text.length < COMMAND.length || Math.floor(f / 30) % 2 === 0)
   const fadeOut = range(f, durationInFrames - 24, durationInFrames)
-  const glow = 0.7 + 0.3 * Math.sin(f / 30)
 
   return (
     <AbsoluteFill style={{ opacity: 1 - fadeOut }}>
@@ -112,7 +112,7 @@ export function Outro() {
               verticalAlign: -8,
               borderRadius: 2,
               background: '#5e9bff',
-              opacity: f < COPY_AT ? (text.length < COMMAND.length || Math.floor(f / 30) % 2 === 0 ? 1 : 0) : 0,
+              opacity: isCaretOn ? 1 : 0,
             }}
           />
         </span>
@@ -125,12 +125,12 @@ export function Outro() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            background: copied ? 'rgb(63 214 136 / 0.16)' : 'rgb(255 255 255 / 0.07)',
-            color: copied ? '#3fd688' : '#d4d4d8',
+            background: isCopied ? 'rgb(63 214 136 / 0.16)' : 'rgb(255 255 255 / 0.07)',
+            color: isCopied ? '#3fd688' : '#d4d4d8',
             transform: `scale(${1 - press * 0.12})`,
           }}
         >
-          {copied ? (
+          {isCopied ? (
             <CheckIcon width={36} height={36} style={{ transform: `scale(${check})` }} />
           ) : (
             <CopyIcon width={34} height={34} />

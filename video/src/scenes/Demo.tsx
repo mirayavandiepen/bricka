@@ -1,5 +1,5 @@
 import { AbsoluteFill, useCurrentFrame, useVideoConfig } from 'remotion'
-import { SMOOTH, SNAP, range, sp } from '../anim'
+import { SMOOTH, range, sp } from '../anim'
 import { SANS } from '../fonts'
 import {
   DocumentIcon,
@@ -94,13 +94,13 @@ const dim = { color: t.pageDim }
 export function Demo() {
   const f = useCurrentFrame()
   const { durationInFrames } = useVideoConfig()
-  const { nodes, typing, isEmpty } = play(f, STEPS, t)
+  const { nodes, isTyping, isEmpty } = play(f, STEPS, t)
 
   const enter = sp(f, 0, { damping: 18, stiffness: 120 })
   const focus = range(f, 18, 34)
   const press = f >= SEND + 2 && f < SEND + 16 ? 1 - range(f, SEND + 4, SEND + 16) : 0
   const lift = sp(f, SEND + 8, SMOOTH)
-  const sent = f >= SEND + 34
+  const isSent = f >= SEND + 34
   const exit = range(f, durationInFrames - 46, durationInFrames - 26)
   const captionOut = range(f, SEND + 34, SEND + 50)
   const zoom = 2.1 + range(f, 0, SEND, [0, 0.12])
@@ -139,21 +139,21 @@ export function Demo() {
           t={t}
           width={610}
           focus={focus}
-          footer={<Footer t={t} enabled={!isEmpty && !sent ? 1 : 0} press={press} />}
+          footer={<Footer t={t} enabled={!isEmpty && !isSent ? 1 : 0} press={press} />}
         >
-          <Input t={t} placeholder={isEmpty || sent ? 'Ask anything, @ to add context' : undefined}>
+          <Input t={t} placeholder={isEmpty || isSent ? 'Ask anything, @ to add context' : undefined}>
             <span
               style={{
                 display: 'inline-block',
-                opacity: sent ? 0 : 1 - lift,
+                opacity: isSent ? 0 : 1 - lift,
                 transform: `translateY(${-lift * 46}px) scale(${1 - lift * 0.04})`,
                 filter: `blur(${lift * 3}px)`,
               }}
             >
-              {!sent && nodes}
-              {!sent && <Caret t={t} frame={f} solid={typing} hidden={f < 18 || f > SEND} />}
+              {!isSent && nodes}
+              {!isSent && <Caret t={t} frame={f} solid={isTyping} hidden={f < 18 || f > SEND} />}
             </span>
-            {sent && <Caret t={t} frame={f} solid={false} />}
+            {isSent && <Caret t={t} frame={f} solid={false} />}
           </Input>
         </Composer>
       </div>
@@ -173,27 +173,5 @@ export function Demo() {
         ]}
       />
     </AbsoluteFill>
-  )
-}
-
-/** A soft bloom behind the composer when the message goes. */
-function SendFlash({ frame }: { frame: number }) {
-  if (frame < 0 || frame > 50) return null
-  const p = sp(frame, 0, SNAP)
-  return (
-    <div
-      style={{
-        position: 'absolute',
-        left: 960 - 700,
-        top: 480 - 400,
-        width: 1400,
-        height: 800,
-        borderRadius: '50%',
-        background: 'radial-gradient(closest-side, rgb(47 125 246 / 0.22), transparent)',
-        opacity: (1 - range(frame, 10, 50)) * p,
-        transform: `scale(${0.6 + 0.5 * p})`,
-        pointerEvents: 'none',
-      }}
-    />
   )
 }

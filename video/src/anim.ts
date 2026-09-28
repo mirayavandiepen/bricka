@@ -42,12 +42,6 @@ export function reveal(p: number, distance = 30, blur = 12) {
   } as const
 }
 
-/** Scene in/out envelope: returns 0..1 in, and 0..1 out. */
-export function envelope(frame: number, duration: number, outLength = 18) {
-  const out = range(frame, duration - outLength, duration, [0, 1], Easing.in(Easing.cubic))
-  return out
-}
-
 /** Characters of `text` visible at `frame` when typed from `start`. */
 export function typed(frame: number, start: number, text: string, speed = 3) {
   if (frame < start) return ''

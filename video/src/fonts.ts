@@ -11,7 +11,7 @@ const weights = {
 } as const
 
 for (const [name, weight] of Object.entries(weights)) {
-  loadFont({
+  void loadFont({
     family: 'Sunghyun Sans',
     url: staticFile(`fonts/SunghyunSans-${name}.woff2`),
     weight,

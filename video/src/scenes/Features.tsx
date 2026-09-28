@@ -118,7 +118,7 @@ export function Autocomplete() {
     >
       {(f) => {
         const text = typed(f, 20, ASK, 2.5)
-        const loading = f >= 68 && f < 84
+        const isLoading = f >= 68 && f < 84
         const cycle = f >= 132 ? 1 : 0
         const accept = range(f, 160, 170)
         const words = GHOSTS[cycle].match(/\s*\S+/g) ?? []
@@ -126,7 +126,7 @@ export function Autocomplete() {
         const shownWords = Math.max(0, Math.min(words.length, Math.floor((f - streamStart) / 4) + 1))
         const ghost = f >= 84 ? words.slice(0, cycle === 0 ? shownWords : words.length).join('') : ''
         const swap = cycle === 1 ? sp(f, 132, SNAP) : 1
-        const counter = f >= 112 && accept < 1
+        const hasCounter = f >= 112 && accept < 1
         return (
           <div style={{ position: 'relative' }}>
             <Composer t={t} width={430}>
@@ -140,7 +140,7 @@ export function Autocomplete() {
                 ) : (
                   <>
                     <Caret t={t} frame={f} solid={f < 70} />
-                    {loading && (
+                    {isLoading && (
                       <span style={{ color: t.faint, fontSize: 8, letterSpacing: 2, opacity: 0.4 + 0.5 * Math.abs(Math.sin(f / 7)) }}> •••</span>
                     )}
                     <span
@@ -152,7 +152,7 @@ export function Autocomplete() {
                     >
                       {ghost}
                     </span>
-                    {counter && (
+                    {hasCounter && (
                       <span
                         style={{
                           marginLeft: 6,
@@ -206,7 +206,7 @@ export function AsyncResults() {
         const q = f < 30 ? '' : typed(f, 30, 'safari', 5)
         const loaded = 72
         const enterAt = 150
-        const pending = f < enterAt
+        const isPending = f < enterAt
         const open = sp(f, 24, SNAP)
         const close = range(f, enterAt, enterAt + 9)
         const rows = ISSUES.map((row, i) => ({ ...row, v: sp(f, loaded + i * 5, SNAP) }))
@@ -232,7 +232,7 @@ export function AsyncResults() {
                         />
                       </span>
                     )}
-                    {pending ? (
+                    {isPending ? (
                       <>
                         <span style={{ color: t.accent }}>@</span>
                         {q}
@@ -325,7 +325,7 @@ export function Attachments() {
       {(f) => {
         const fly = sp(f, 14, { damping: 20, stiffness: 60 })
         const dropAt = 78
-        const dropped = f >= dropAt
+        const isDropped = f >= dropAt
         const hover = range(f, 50, 60) * (1 - range(f, dropAt, dropAt + 8))
         const strip = sp(f, dropAt, { damping: 20, stiffness: 180 })
         const chip1 = sp(f, dropAt + 2, POP)
@@ -346,7 +346,7 @@ export function Attachments() {
               attachments={
                 <div style={{ height: strip * 54, overflow: 'hidden' }}>
                   <div style={{ display: 'flex', gap: 6, padding: '10px 10px 0' }}>
-                    {dropped && (
+                    {isDropped && (
                       <Attachment
                         p={chip1}
                         name="layout.png"
@@ -391,16 +391,16 @@ export function Attachments() {
                 </div>
               )}
             </Composer>
-            {!dropped || land < 0.99 ? (
+            {!isDropped || land < 0.99 ? (
               <div
                 style={{
                   position: 'absolute',
-                  left: dropped ? interpolate(land, [0, 1], [cardX, 14]) : cardX,
-                  top: dropped ? interpolate(land, [0, 1], [cardY, 10]) : cardY,
+                  left: isDropped ? interpolate(land, [0, 1], [cardX, 14]) : cardX,
+                  top: isDropped ? interpolate(land, [0, 1], [cardY, 10]) : cardY,
                   zIndex: 5,
-                  transform: `rotate(${(1 - fly) * 10 - 3 * (1 - land)}deg) scale(${dropped ? 1 - land * 0.7 : 1})`,
+                  transform: `rotate(${(1 - fly) * 10 - 3 * (1 - land)}deg) scale(${isDropped ? 1 - land * 0.7 : 1})`,
                   transformOrigin: 'top left',
-                  opacity: dropped ? 1 - land : Math.min(1, fly * 3),
+                  opacity: isDropped ? 1 - land : Math.min(1, fly * 3),
                   filter: 'drop-shadow(0 6px 14px rgb(0 0 0 / 0.14))',
                 }}
               >

@@ -1,6 +1,6 @@
 import type { CSSProperties, ReactNode } from 'react'
 import { AbsoluteFill, useCurrentFrame, useVideoConfig } from 'remotion'
-import { POP, SMOOTH, range, reveal, sp } from '../anim'
+import { POP, range, reveal, sp } from '../anim'
 import { MONO, SANS } from '../fonts'
 import { EyeIcon, FileIcon, FlaskIcon, FolderIcon, SparkIcon } from '../icons'
 import { opening as t, tone } from '../theme'
