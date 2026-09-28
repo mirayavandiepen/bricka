@@ -1,24 +1,40 @@
-# Bricka
+<h1 align="center">Bricka</h1>
 
-A composable React input for AI apps: people type naturally and pull files, people, tools and commands into the message as structured context.
+<p align="center"><strong>The input for AI apps.</strong><br />A React composer where files, people, tools and commands live inside the message as real tokens.</p>
+
+<p align="center">
+  <a href="https://github.com/mirayavandiepen/bricka/blob/main/.github/assets/bricka-4k.mp4">
+    <img src="https://raw.githubusercontent.com/mirayavandiepen/bricka/main/.github/assets/preview.gif" alt="Bricka demo: typing @ and / pulls files and commands into the message as tokens" width="960" />
+  </a>
+  <br />
+  <a href="https://github.com/mirayavandiepen/bricka/blob/main/.github/assets/bricka-4k.mp4"><strong>▶ Watch the full demo in 4K</strong></a>
+</p>
+
+## What it does
+
+A user types:
 
 > Fix @Composer.tsx using @design-system and check /accessibility
 
-In that sentence, `Composer.tsx`, `design-system` and `accessibility` are tokens, not text. Your app receives exactly what was referenced.
+In a normal textarea that is just a string. In Bricka, `Composer.tsx`, `design-system` and `accessibility` are **tokens**: structured objects with an id, a type and any data you attach. When the message is sent, your app gets the plain text _and_ exactly what was referenced, so there is nothing to parse.
 
-**Demo and docs:** _link coming soon_ — run them locally with `bun run dev`.
+Out of the box you get:
+
+- **Tokens** that sit inline in the sentence, with icons, tooltips and two-step Backspace removal.
+- **Triggers**: `@` mentions, `/` commands, or any character you choose.
+- **Search** over static lists or your API, with fuzzy matching, groups, debouncing and cancellation.
+- **Ghost-text autocomplete** from any model, including streaming.
+- **Attachments** by paste, drag and drop, or file picker.
+- **Accessibility**: full keyboard support, screen reader announcements, IME-safe input, reduced motion.
+- **Theming** with light and dark defaults, CSS variables, or fully headless.
+
+React 18 or newer. No other runtime dependencies.
 
 ## Install
 
 ```bash
 npm install @bricka/react
 ```
-
-```ts
-import '@bricka/react/styles.css'
-```
-
-React 18 or newer. No other runtime dependencies.
 
 ## Quick start
 
@@ -55,38 +71,37 @@ export function Chat() {
 }
 ```
 
-State is managed for you. Pass `value` and `onValueChange` when you want to own it.
+That's a working composer: type `@` to pick an item, press Enter to send.
 
-In Next.js and other server-rendered React apps, put `'use client'` at the top of the file that renders the composer, since it takes event handlers such as `onSubmit`.
+- `text` is the message as plain text.
+- `value` is the structured content, tokens included.
+- `attachments` are the files the user added.
 
-## Features
+State is managed for you. Pass `value` and `onValueChange` if you want to control it yourself.
 
-- **Inline context tokens** that sit in the sentence, with icons, tooltips, selection and two-step Backspace removal.
-- **Triggers**: `@` mentions, `/` commands, or any character you choose, all sharing one menu system.
-- **Sync or async results** with fuzzy matching, groups, abort signals, debouncing and stale-result protection.
-- **Ghost-text autocomplete** with cycling, cancellation and streaming from any provider.
-- **Attachments** by paste, drop or picker. You handle storage; Bricka handles the interaction.
-- **Composable parts**: attachments, input, footer, actions and submit are separate and optional.
-- **Keyboard-first and accessible**: listbox semantics, live announcements, IME-safe, reduced motion.
-- **Themeable** through CSS custom properties with light and dark defaults, or fully headless.
+> **Next.js / server components:** add `'use client'` to the file that renders the composer, because it takes event handlers such as `onSubmit`.
 
-## Context
+## Guide
 
-Anything your app can reference is a `ContextItem`:
+### 1. Context items
+
+Everything a user can reference is a `ContextItem`. Only `id` and `label` are required.
 
 ```ts
 {
-  id: 'issue-128',
-  label: '#128 Menu flickers in Safari',
-  type: 'issue',
-  description: 'Open',
+  id: 'issue-128',               // required, unique
+  label: '#128 Menu flickers',   // required, shown in the token and menu
+  type: 'issue',                 // any string, useful for styling and icons
+  description: 'Open',           // secondary text in the menu
   icon: <IssueIcon />,
-  group: 'Issues',
-  data: { url: 'https://…' },
+  group: 'Issues',               // groups items under a heading in the menu
+  data: { url: 'https://…' },    // anything you need back on submit
 }
 ```
 
-Static arrays are fuzzy-filtered for you. Loaders receive the query and an `AbortSignal`:
+### 2. Triggers
+
+A trigger connects a character to a list of items. Pass a static array and Bricka fuzzy-filters it for you, or pass a function to load results from your API:
 
 ```ts
 const files: Trigger = {
@@ -97,28 +112,11 @@ const files: Trigger = {
 }
 ```
 
-Convert content with `getText(value)`, `getTokens(value, '@')` and `serialize(value)`.
+The `signal` cancels requests the user has typed past, and results that arrive out of order are ignored.
 
-## Autocomplete
+### 3. Commands
 
-```tsx
-<ComposerInput
-  autocomplete={async ({ text, signal }) => {
-    const response = await fetch('/api/complete', {
-      method: 'POST',
-      body: text,
-      signal,
-    })
-    return response.text()
-  }}
-/>
-```
-
-Return a string, several strings to cycle through, or an async iterable to stream. Requests are cancelled when typing continues, and results are only shown if the text is unchanged.
-
-## Commands
-
-Commands are a trigger like any other. Selected commands become tokens by default; return `false` from `onSelect` to run an action instead.
+Commands are just a trigger on `/`. A selected command becomes a token by default. To run an action instead, return `false` from `onSelect`:
 
 ```ts
 const commands: Trigger = {
@@ -139,7 +137,43 @@ const commands: Trigger = {
 }
 ```
 
+### 4. Autocomplete
+
+Give `ComposerInput` an `autocomplete` function to show ghost-text suggestions after the caret:
+
+```tsx
+<ComposerInput
+  autocomplete={async ({ text, signal }) => {
+    const response = await fetch('/api/complete', {
+      method: 'POST',
+      body: text,
+      signal,
+    })
+    return response.text()
+  }}
+/>
+```
+
+Return a string, an array of strings (the user cycles with Shift Tab), or an async iterable to stream. Requests are cancelled as the user keeps typing, and a suggestion only appears if the text hasn't changed.
+
+### 5. Attachments
+
+Set `acceptFiles` on `Composer` and add `ComposerAttachments` and `ComposerAttachButton`. Users can then paste, drop or pick files. Bricka handles the interaction and previews; you decide where the files are stored.
+
+### 6. Reading the content
+
+Helpers for working with `value`:
+
+| Helper                  | Returns                                          |
+| ----------------------- | ------------------------------------------------ |
+| `getText(value)`        | The message as plain text                        |
+| `getTokens(value, '@')` | The referenced items, optionally for one trigger |
+| `serialize(value)`      | JSON-safe segments to store or send to your API  |
+| `isEmpty(value)`        | Whether there is anything to send                |
+
 ## Customization
+
+Every part is a separate component, so you only render what you need and can add your own controls in between:
 
 ```tsx
 <Composer acceptFiles="image/*,.pdf" onSubmit={send}>
@@ -156,54 +190,59 @@ const commands: Trigger = {
 </Composer>
 ```
 
-Theme with custom properties such as `--bricka-accent`, `--bricka-token-bg` and `--bricka-radius`. Every part takes `className` and exposes state through data attributes (`data-selected`, `data-active`, `data-dragging`, `data-type`, `data-trigger`). Replace the menu with your own through `useComposerMenu()`, and reach any state or action with `useComposer()`.
+**Styling.** Override CSS variables such as `--bricka-accent`, `--bricka-token-bg` and `--bricka-radius`, or pass `className` to any part. State is exposed through data attributes: `data-selected`, `data-active`, `data-dragging`, `data-type` and `data-trigger`.
+
+**Going further.** Build your own suggestion menu with `useComposerMenu()`, and read state or call actions from any child with `useComposer()`.
 
 ## Keyboard
 
-| Keys             | Action                                                |
-| ---------------- | ----------------------------------------------------- |
-| `Enter`          | Send, or choose the active item                       |
-| `Shift` `Enter`  | New line                                              |
-| `⌘/Ctrl` `Enter` | Send (with `submitKey="mod+enter"`)                   |
-| `↑` `↓`          | Move through menu items                               |
-| `Tab`            | Choose the item, or accept the suggestion             |
-| `Shift` `Tab`    | Next suggestion                                       |
-| `Esc`            | Close the menu or dismiss the suggestion              |
-| `⌫`              | Select the token before the caret; again to remove it |
+| Keys             | Action                                                      |
+| ---------------- | ----------------------------------------------------------- |
+| `Enter`          | Send, or choose the highlighted item                        |
+| `Shift` `Enter`  | New line                                                    |
+| `⌘/Ctrl` `Enter` | Send (with `submitKey="mod+enter"`)                         |
+| `↑` `↓`          | Move through menu items                                     |
+| `Tab`            | Choose the item, or accept the suggestion                   |
+| `Shift` `Tab`    | Next suggestion                                             |
+| `Esc`            | Close the menu or dismiss the suggestion                    |
+| `⌫`              | Select the token before the caret; press again to remove it |
 
 ## API
 
-| Export                                                                       | Purpose                                           |
-| ---------------------------------------------------------------------------- | ------------------------------------------------- |
-| `Composer`                                                                   | Root: value, attachments, submit, files, errors   |
-| `ComposerInput`                                                              | The editable field: triggers, autocomplete, paste |
-| `ComposerAttachments`                                                        | Attachment list with previews and progress        |
-| `ComposerFooter`, `ComposerAction`, `ComposerAttachButton`, `ComposerSubmit` | Controls                                          |
-| `ComposerMenu`, `useComposerMenu`                                            | Default suggestion popup, or build your own       |
-| `useComposer`                                                                | State and actions from any child                  |
-| `getText`, `getTokens`, `serialize`, `isEmpty`, `isEqual`, `fuzzyFilter`     | Helpers                                           |
+| Export                                                                       | Purpose                                         |
+| ---------------------------------------------------------------------------- | ----------------------------------------------- |
+| `Composer`                                                                   | Root: value, attachments, submit, files, errors |
+| `ComposerInput`                                                              | The text field: triggers, autocomplete, paste   |
+| `ComposerAttachments`                                                        | Attachment list with previews and progress      |
+| `ComposerFooter`, `ComposerAction`, `ComposerAttachButton`, `ComposerSubmit` | Controls below the input                        |
+| `ComposerMenu`, `useComposerMenu`                                            | Default suggestion menu, or build your own      |
+| `useComposer`                                                                | State and actions from any child                |
+| `getText`, `getTokens`, `serialize`, `isEmpty`, `isEqual`, `fuzzyFilter`     | Helpers                                         |
 
-The full reference is in the docs.
+The full reference is in the docs site (`bun run dev`, see below).
 
-## Development
+## Contributing
 
-This is a Bun workspace.
+This repo is a Bun workspace:
+
+| Folder           | Contents                                                |
+| ---------------- | ------------------------------------------------------- |
+| `packages/react` | The library                                             |
+| `docs`           | Documentation site with the live composer               |
+| `examples`       | Coding assistant, writing assistant and agent composers |
+| `video`          | The demo video                                          |
 
 ```bash
 bun install
-bun run dev           # docs site with the live composer
-bun run dev:examples  # the three example composers
-bun run test          # library tests
+bun run dev           # docs site
+bun run dev:examples  # example composers
+bun run test
 bun run lint
 bun run typecheck
 bun run build         # builds packages/react
 bun run build:docs
 ```
 
-- `packages/react` — the library
-- `examples` — coding assistant, writing assistant and agent composer
-- `docs` — documentation site
-
 ## License
 
-Created by Miraya van Diepen. MIT licensed; see [LICENSE](LICENSE).
+MIT © Miraya van Diepen. See [LICENSE](LICENSE).
