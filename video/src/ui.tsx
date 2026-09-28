@@ -759,6 +759,8 @@ export function KeyHud({
   const out = range(age, 34, 46)
   if (out >= 1) return null
   const press = age < 3 ? age / 3 : 1 - range(age, 3, 12)
+  const keySize = 44
+  const inset = 12
   return (
     <div
       style={{
@@ -767,8 +769,9 @@ export function KeyHud({
         display: 'flex',
         alignItems: 'center',
         gap: 12,
-        padding: '12px 22px 12px 12px',
-        borderRadius: 999,
+        padding: `${inset}px 22px ${inset}px ${inset}px`,
+        // Concentric with the keycaps: outer radius = keycap radius + inset.
+        borderRadius: keySize * 0.24 + inset,
         background: light ? '#ffffff' : '#1c1c1f',
         boxShadow: light
           ? '0 0 0 1px rgb(0 0 0 / 0.06), 0 4px 12px rgb(0 0 0 / 0.06)'
@@ -780,7 +783,7 @@ export function KeyHud({
       }}
     >
       {current.keys.map((k, i) => (
-        <Keycap key={i} label={k} size={44} press={press} lit={1 - range(age, 6, 30)} light={light} />
+        <Keycap key={i} label={k} size={keySize} press={press} lit={1 - range(age, 6, 30)} light={light} />
       ))}
       {current.label && (
         <span style={{ color: light ? '#3a3a40' : '#d4d4d8', fontSize: 22, fontWeight: 600, paddingLeft: 4 }}>
