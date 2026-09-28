@@ -430,6 +430,78 @@ a {
   text-wrap: pretty;
 }
 
+.hero-name {
+  max-width: 500px;
+  margin: 10px 0 0;
+  padding-inline-start: var(--text-inset);
+  color: var(--faint);
+  font-size: 14px;
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+.hero-name-word {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* The notation and its speaker stay on one line. */
+.say-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.say-group code {
+  padding: 1px 6px;
+  border-radius: 6px;
+  background: var(--card-bg);
+  box-shadow: 0 0 0 1px var(--hairline);
+  color: var(--ink);
+  font-family: var(--bricka-font-mono);
+  font-size: 12.5px;
+}
+
+.say {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  color: var(--faint);
+  cursor: pointer;
+  transition:
+    color 150ms ease,
+    transform 150ms ease;
+}
+
+/* A larger hit area than the 24px icon. */
+.say::after {
+  content: '';
+  position: absolute;
+  inset: -8px;
+}
+
+.say:hover,
+.say[data-speaking] {
+  color: var(--ink);
+}
+
+.say:active {
+  transform: scale(0.94);
+}
+
+.say:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 1px;
+}
+
 .hero-demo {
   display: flex;
   flex-direction: column;
@@ -1075,6 +1147,10 @@ kbd {
 
   .hero-lede {
     animation: rise 600ms var(--ease-out-expo) 420ms backwards;
+  }
+
+  .hero-name {
+    animation: rise 600ms var(--ease-out-expo) 480ms backwards;
   }
 
   /* After the hints, just before typing starts. */

@@ -2,6 +2,8 @@
 
 <p align="center">   A React composer where files, people, tools and commands live inside the message as real tokens.</p>
 
+<p align="center"><sub><b>Bricka</b> (Swedish for a small tile or token, like a game piece or a name tag), pronounced <code>/ˈbrɪkːa/</code>, like “BRICK-ah”.</sub></p>
+
 <p align="center">
 
   
