@@ -18,12 +18,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mirayatech/bricka.git",
+    "url": "git+https://github.com/mirayavandiepen/bricka.git",
     "directory": "packages/react"
   },
-  "homepage": "https://github.com/mirayatech/bricka#readme",
+  "homepage": "https://github.com/mirayavandiepen/bricka#readme",
   "bugs": {
-    "url": "https://github.com/mirayatech/bricka/issues"
+    "url": "https://github.com/mirayavandiepen/bricka/issues"
   },
   "type": "module",
   "sideEffects": [
