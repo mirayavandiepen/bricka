@@ -317,9 +317,8 @@ a {
   margin-top: 0;
 }
 
-/* Tapping outside lands on the summary's backdrop, which closes the menu. */
-.mobile-nav[open] > summary::before {
-  content: '';
+/* Dims the page behind the open menu; a tap on it closes the menu. */
+.mobile-nav-backdrop {
   position: fixed;
   inset: 0;
   z-index: 1;
@@ -328,7 +327,14 @@ a {
 }
 
 .mobile-nav[open] > summary {
+  position: relative;
+  z-index: 3;
   color: var(--ink);
+}
+
+/* Like a dialog: the page stays put while the menu is open. */
+html:has(.mobile-nav[open]) {
+  overflow: hidden;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -337,7 +343,7 @@ a {
     --rise-y: -6px;
   }
 
-  .mobile-nav[open] > summary::before {
+  .mobile-nav-backdrop {
     animation: fade 200ms ease-out;
   }
 }

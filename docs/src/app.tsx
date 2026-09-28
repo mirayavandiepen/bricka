@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Hero } from './hero'
 import { LINKS } from './links'
 import { NAV, NAV_GROUPS } from './nav'
@@ -76,6 +76,57 @@ function useReveal() {
   }, [])
 }
 
+/** The Contents menu acts like a dialog: a picked link, a tap outside or
+    Escape closes it. */
+function MobileNav({ active }: { active: string }) {
+  const details = useRef<HTMLDetailsElement>(null)
+
+  useEffect(() => {
+    function close() {
+      if (details.current) details.current.open = false
+    }
+    // A tap anywhere outside the menu closes it, and goes no further.
+    function onClick(event: MouseEvent) {
+      const element = details.current
+      if (!element?.open) return
+      const target = event.target as Node
+      const menu = element.querySelector('nav')
+      const summary = element.querySelector('summary')
+      if (menu?.contains(target) || summary?.contains(target)) return
+      event.preventDefault()
+      close()
+    }
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key !== 'Escape' || !details.current?.open) return
+      close()
+      details.current.querySelector('summary')?.focus()
+    }
+    document.addEventListener('click', onClick)
+    document.addEventListener('keydown', onKeyDown)
+    return () => {
+      document.removeEventListener('click', onClick)
+      document.removeEventListener('keydown', onKeyDown)
+    }
+  }, [])
+
+  return (
+    <details className="mobile-nav" ref={details}>
+      <summary>Contents</summary>
+      <div className="mobile-nav-backdrop" aria-hidden />
+      <nav
+        aria-label="Contents"
+        onClick={(event) => {
+          if ((event.target as Element).closest('a')) {
+            details.current?.removeAttribute('open')
+          }
+        }}
+      >
+        <Navigation active={active} />
+      </nav>
+    </details>
+  )
+}
+
 export function App() {
   const active = useActiveSection(NAV_IDS)
   useReveal()
@@ -91,12 +142,7 @@ export function App() {
             <span className="wordmark">bricka</span>
           </a>
           <nav className="topbar-links" aria-label="Project">
-            <details className="mobile-nav">
-              <summary>Contents</summary>
-              <nav aria-label="Contents">
-                <Navigation active={active} />
-              </nav>
-            </details>
+            <MobileNav active={active} />
             <a href={LINKS.npm}>npm</a>
             {LINKS.repository && <a href={LINKS.repository}>GitHub</a>}
             <a className="cta" href="#get-started">
