@@ -203,6 +203,9 @@ a {
 
 /* A plain row that scrolls away with the page; only the sidebar follows. */
 .topbar {
+  position: relative;
+  /* Above the hero composer, so the Contents menu opens over it. */
+  z-index: 20;
   padding: 0 20px;
 }
 
@@ -289,17 +292,54 @@ a {
   display: none;
 }
 
+/* A sheet under the top bar, the width of the page. */
 .mobile-nav nav {
-  position: absolute;
-  top: calc(100% + 12px);
-  right: 0;
-  width: 240px;
-  max-height: 70vh;
-  padding: 12px;
+  position: fixed;
+  top: calc(var(--header-height) + 4px);
+  right: 12px;
+  left: 12px;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 16px 8px;
+  max-height: calc(100dvh - var(--header-height) - 20px);
+  padding: 14px 10px;
   overflow-y: auto;
-  border-radius: 20px;
+  overscroll-behavior: contain;
+  border-radius: 22px;
   background: var(--card-bg);
-  box-shadow: var(--card-shadow);
+  box-shadow:
+    0 0 0 1px rgb(23 23 23 / 0.06),
+    0 24px 48px -16px rgb(23 23 23 / 0.24);
+}
+
+.mobile-nav .nav-group + .nav-group {
+  margin-top: 0;
+}
+
+/* Tapping outside lands on the summary's backdrop, which closes the menu. */
+.mobile-nav[open] > summary::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  background: rgb(23 23 23 / 0.12);
+  cursor: default;
+}
+
+.mobile-nav[open] > summary {
+  color: var(--ink);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .mobile-nav[open] nav {
+    animation: rise 260ms var(--ease-out-expo);
+    --rise-y: -6px;
+  }
+
+  .mobile-nav[open] > summary::before {
+    animation: fade 200ms ease-out;
+  }
 }
 
 /* --- Layout --- */
@@ -720,6 +760,7 @@ kbd {
 
 .install {
   display: flex;
+  min-width: 0;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
@@ -729,6 +770,13 @@ kbd {
   box-shadow: inset 0 0 0 1px var(--hairline);
   font-family: var(--bricka-font-mono);
   font-size: 13.5px;
+}
+
+.install code {
+  min-width: 0;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none;
 }
 
 .install code span {
@@ -1232,7 +1280,8 @@ kbd {
   }
 
   .docs {
-    padding: 0 20px;
+    --docs-gutter: 18px;
+    padding: 0 var(--docs-gutter);
   }
 
   .section {
@@ -1248,7 +1297,46 @@ kbd {
   }
 
   .steps > li {
-    padding-left: 38px;
+    padding-left: 36px;
+  }
+
+  .steps > li::before {
+    width: 24px;
+    height: 24px;
+    font-size: 12px;
+  }
+
+  .steps > li:not(:last-child)::after {
+    top: 32px;
+    left: 11.5px;
+  }
+
+  .section h2 {
+    font-size: 22px;
+  }
+
+  .section .lede {
+    font-size: 15.5px;
+  }
+
+  .code-body pre {
+    font-size: 12.5px;
+  }
+
+  /* Segmented controls scroll sideways instead of wrapping onto two rows. */
+  .tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .tabs::-webkit-scrollbar,
+  .topic-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tabs button {
+    flex: none;
   }
 
   /* The side menu becomes a row you can swipe. */
@@ -1260,8 +1348,8 @@ kbd {
   .topic-list {
     position: static;
     display: flex;
-    margin: 0 -20px;
-    padding: 0 20px;
+    margin: 0 calc(var(--docs-gutter) * -1);
+    padding: 0 var(--docs-gutter);
     overflow-x: auto;
     scrollbar-width: none;
   }
@@ -1279,5 +1367,36 @@ kbd {
   .footer {
     flex-direction: column;
     gap: 2px;
+  }
+}
+
+@media (max-width: 420px) {
+  .layout {
+    padding: 0 8px;
+  }
+
+  .topbar {
+    padding: 0 10px 0 16px;
+  }
+
+  .docs {
+    --docs-gutter: 16px;
+  }
+
+  .hero {
+    padding: 24px 6px 16px;
+  }
+
+  .hero h1 {
+    font-size: 36px;
+  }
+
+  .hero-hints {
+    gap: 8px 16px;
+  }
+
+  .mobile-nav nav {
+    right: 8px;
+    left: 8px;
   }
 }
