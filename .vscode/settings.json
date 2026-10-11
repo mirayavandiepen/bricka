@@ -1,0 +1,14 @@
+{
+  "json.schemaDownload.enable": true,
+  "files.associations": {
+    "bun.lock": "jsonc"
+  },
+  "json.schemas": [
+    {
+      "fileMatch": ["bun.lock"],
+      "schema": {
+        "allowTrailingCommas": true
+      }
+    }
+  ]
+}
