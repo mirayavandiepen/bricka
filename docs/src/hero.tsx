@@ -1,9 +1,4 @@
 import {
-  CODING_EXAMPLE_VALUE,
-  CodingAssistant,
-} from '@examples/coding-assistant'
-import { MessagePreview } from '@examples/parts'
-import {
   type ComposerApi,
   type ComposerMessage,
   type ComposerValue,
@@ -18,6 +13,11 @@ import {
   type ReactNode,
   type RefObject,
 } from 'react'
+import {
+  CODING_EXAMPLE_VALUE,
+  CodingAssistant,
+} from './examples/coding-assistant'
+import { MessagePreview } from './examples/parts'
 
 /** One line on what the app gets: the text, plus each token by kind. */
 function Readout({ value }: { value: ComposerValue }) {

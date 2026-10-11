@@ -227,17 +227,14 @@ The full reference is in the docs site (`bun run dev`, see below).
 
 This repo is a Bun workspace:
 
-| Folder           | Contents                                                |
-| ---------------- | ------------------------------------------------------- |
-| `packages/react` | The library                                             |
-| `docs`           | Documentation site with the live composer               |
-| `examples`       | Coding assistant, writing assistant and agent composers |
-| `video`          | The demo video                                          |
+| Folder           | Contents                                                        |
+| ---------------- | --------------------------------------------------------------- |
+| `packages/react` | The library                                                     |
+| `docs`           | Documentation site with the live composer and example composers |
 
 ```bash
 bun install
 bun run dev           # docs site
-bun run dev:examples  # example composers
 bun run test
 bun run lint
 bun run typecheck

@@ -1,11 +1,11 @@
-import { AgentComposer } from '@examples/agent-composer'
-import { CodingAssistant } from '@examples/coding-assistant'
-import { MessagePreview } from '@examples/parts'
-import { WritingAssistant } from '@examples/writing-assistant'
 import type { ComposerMessage } from '@mirayavandiepen/bricka'
 import { useState, type ReactNode } from 'react'
 import { ApiReference } from './api'
 import { Code, CopyButton } from './code'
+import { AgentComposer } from './examples/agent-composer'
+import { CodingAssistant } from './examples/coding-assistant'
+import { MessagePreview } from './examples/parts'
+import { WritingAssistant } from './examples/writing-assistant'
 import { Pronunciation } from './pronunciation'
 import { Section } from './section'
 import { Facts, KeyGrid, Note, Steps, Topics } from './ui'
@@ -872,7 +872,7 @@ function Examples() {
         </div>
       </div>
       <p>
-        The source for all three lives in <code>examples/src</code>.
+        The source for all three lives in <code>docs/src/examples</code>.
       </p>
     </Section>
   )

@@ -18,7 +18,6 @@ export default defineConfig({
         find: /^@mirayavandiepen\/bricka\/styles\.css$/,
         replacement: path('../packages/react/src/styles.css'),
       },
-      { find: /^@examples\//, replacement: path('../examples/src/') },
     ],
   },
 })
