@@ -434,12 +434,18 @@ describe('announcements', () => {
     const status = container.querySelector('[role="status"]')!
     type(editor, '@')
     await act(
-      async () => new Promise((resolve) => requestAnimationFrame(resolve))
+      async () =>
+        new Promise((resolve) =>
+          requestAnimationFrame(resolve as unknown as FrameRequestCallback)
+        )
     )
     expect(status.textContent).toBe('3 results available')
     press(editor, 'Enter')
     await act(
-      async () => new Promise((resolve) => requestAnimationFrame(resolve))
+      async () =>
+        new Promise((resolve) =>
+          requestAnimationFrame(resolve as unknown as FrameRequestCallback)
+        )
     )
     expect(status.textContent).toBe('Added package.json')
   })
